@@ -1,0 +1,15 @@
+[
+		[{"":"self"}, {"sys":"ON"}, 
+		 {"":"self", "position":["movement"],"close_to_human":false}, {"movement":["True"]},
+		 {"h1_near_rob":true, "position":["kitchen"],"close_to_human":true}, {"movement":[]},
+		 {"h1_speech":"ready_for_delivery", "position":["kitchen"],"close_to_human":true}, {"speech":"gratitude"},
+		 {"":"self", "position":["kitchen"],"close_to_human":true}, {"movement":["True"]},
+		 {"":"self", "position":["movement"],"close_to_human":false}, {"movement":["True"]},
+		 {"":"self", "position":[],"close_to_human":false}, {"movement":["True"]},
+		 {"":"self", "position":["common_area"],"close_to_human":false}, {"speech":"greet"},
+		 {"h1_position":"robot","position":["common_area"],"close_to_human":true}, {"sys":"pass"},
+		 {"h1_speech":"greet", "position":["common_area"],"close_to_human":true}, {"speech":"ANNOUNCEMENT"},
+		 {"":"self","position":["common_area"],"close_to_human":true},{"speech":"farewell"},
+		 {"":"self","position":["common_area"],"close_to_human":true},{"sys":"OFF"}],
+
+]

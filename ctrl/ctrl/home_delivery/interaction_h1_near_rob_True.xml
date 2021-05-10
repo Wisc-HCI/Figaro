@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<interaction_h1_near_rob_True>
+   <state id="0">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="ON"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="1">
+      <behaviors>
+         <behavior cat="movement"/>
+      </behaviors>
+   </state>
+   <state id="2">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="Living area"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="4">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="Office"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="6">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="OFF"/>
+         </behavior>
+         <behavior cat="movement"/>
+      </behaviors>
+   </state>
+   <init id="0"/>
+   <transition source_id="0" target_id="1">
+      <events>
+         <label label="h1_near_rob">
+            <val val="True"/>
+         </label>
+      </events>
+      <env_state/>
+   </transition>
+   <transition source_id="1" target_id="2">
+      <events>
+         <label label="h1_speech">
+            <val val="RequestDelivery"/>
+         </label>
+      </events>
+      <env_state/>
+   </transition>
+   <transition source_id="2" target_id="1">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Living area"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="1" target_id="4">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Living area"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="4" target_id="1">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Office"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="1" target_id="6">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position"/>
+      </env_state>
+   </transition>
+</interaction_h1_near_rob_True>

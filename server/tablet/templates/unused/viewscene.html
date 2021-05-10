@@ -1,0 +1,81 @@
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="col">
+  	    <h1 class="text-center">SCENE VIEW</h1>
+  	  </div>
+  	</div>
+    <div class="row">
+      <div class="col">
+        <p>Click a state below to make changes, or delete the entire scene.</p>
+      </div>
+    </div>
+    <div class="row" style="padding-left:20%; padding-right: 20%">
+      <div class="col-8">
+  	  </div>
+      <div class="col-2">
+        <button id="done" class="btn btn-outline-dark btn-lg" type="button">DONE</button>
+      </div>
+      <div class="col-2">
+        <button id="cancel" class="btn btn-outline-dark btn-lg" type="button">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+
+  $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port() + '/nav');
+      socket.on('system_nav', function(msg) {
+          console.log("received navigation message")
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            console.log("navigating")
+            window.location.href = msg.response
+          }
+      });
+
+      $("#done").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'end_viewscene', sender: 'tablet'});
+      });
+
+      $("#cancel").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'cancel_viewscene', sender: 'tablet'});
+      });
+
+  });
+
+</script>
+
+</body>
+</html>

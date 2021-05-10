@@ -1,0 +1,7 @@
+string label
+string speaker
+bool new_cat
+StringArray speech_examples
+
+StringArray edited_intent_categories
+StringArray[] edited_speech_examples

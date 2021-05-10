@@ -1,0 +1,184 @@
+import ./BaseFigaroEntities.chatito
+
+%[greet]('training':'1000')
+    ~[hi_synonyms] ~[addressee?]
+    ~[greet_variations] ~[addressee?]
+    ~[hi_synonyms] ~[greet_variations] ~[addressee?]
+    ~[greet_abstract] ~[addressee?]
+    ~[greet_abstract] ~[possessive] ~[addressee]
+    ~[greet_abstract] ~[article] ~[addressee]
+
+~[hi_synonyms]
+    hi
+    hello
+    hey
+    hi there
+    hello there
+    hey there
+
+~[greet_variations]
+    whats up
+    hows it going
+    how do you do
+    how are you
+    hey man
+    greetings
+
+~[greet_abstract]
+    greet
+    greets
+    greeted
+    greeting
+    welcome
+    welcomes
+    welcomed
+    welcoming
+
+%[affirm]('training':'1000')
+    ~[affirm_first_person]
+    ~[affirm_first_person] to ~[article] ~[addressee]
+    ~[affirm_abstract]
+    ~[affirm_abstract] that 
+
+~[affirm_first_person]
+    yes
+    confirmed
+    affirmative
+    yep
+    uh huh
+    yeah
+    correct
+    thats correct
+    certainly
+    absolutely
+    indeed
+    agreed
+    sure
+
+~[affirm_abstract]
+    affirm
+    affirms
+    affirmed
+    confirm
+    confirms
+    confirmed
+
+~[affirm_content]
+    that the groceries are on the counter
+    that the robot can give the person the delivery
+    that the robot can escort the person to the gate
+    that the robot can move out of the way
+
+%[deny]('training':'1000')
+    ~[deny_first_person]
+    ~[deny_first_person] to ~[article] ~[addressee]
+    ~[deny_abstract]
+    no to ~[article] ~[addressee]
+
+~[deny_first_person]
+    no
+    denied
+
+~[deny_abstract]
+    deny
+    denies
+    denied
+
+%[thank]('training':'1000')
+    ~[thank_first_person]
+    ~[thank_abstract] ~[article] ~[addressee]
+
+~[thank_first_person]
+    thanks
+    thank you
+    Im grateful
+    I appreciate it
+    I appreciate that
+
+~[thank_abstract]
+    thank
+    thanks
+    thanked
+    express gratitude
+    expresses gratitude
+    expressed gratitude
+    thankful
+
+%[excuse_self]('training':'1000')
+    ~[excuse_first_person]
+    ~[excuse_abstract]
+
+~[excuse_first_person]
+    excuse me
+    pardon me
+
+~[excuse_abstract]
+    ask to be excused
+    asks to be excused
+    asked to be excused
+
+%[apologize]('training':'1000')
+    ~[apologize_first_person]
+    ~[apologize_abstract] to ~[article] ~[addressee]
+
+~[apologize_first_person]
+    sorry
+    Im sorry
+    sorry about that
+    I apologize
+    apologies
+
+~[apologize_abstract]
+    apologize
+    apologizes
+    apologized
+
+%[get_attention]('training':'1000')
+    ~[attention_first_person]
+    ~[attention_abstract]
+
+~[attention_first_person]
+    can I have your attention
+    hey
+
+~[attention_abstract]
+    gets their attention
+    got their attention
+    getting their attention
+    asks for their attention
+
+%[farewell]('training':'1000')
+    ~[bye_starters?] ~[bye_synonyms] ~[addressee?]
+
+~[bye_synonyms]
+    bye
+    bye bye
+    goodbye
+    see you later
+    farewell
+    talk to you later
+    nice talking to you
+    until next time
+    it was great talking to you
+    bye for now
+    goodbye for now
+
+~[bye_starters]
+    alright
+    okay then
+    alrighty
+    okay
+
+~[addressee]
+    friend
+    robot
+
+~[possessive]
+    his
+    her
+    its
+
+~[article]
+    the
+    a
+    an

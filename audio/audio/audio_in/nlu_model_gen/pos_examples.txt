@@ -1,0 +1,626 @@
+the next thing I want to happen is they will announce < hi >
+the next thing I want to happen is the robot says < hello >
+later he will say < hey >
+the next thing I want to happen is the robot announced < hey >
+it will announce < hi there >
+okay heres what happens next he will announce < hello there >
+next robot said < hello there >
+okay heres what happens next human is announcing < hey there >
+later robot said < hey there >
+the next thing I want to happen is she < hi friend >
+okay heres what happens next the robot is saying < hi friend >
+later she will announce < hello friend >
+then robot announced < hello friend >
+the next thing I want to happen is the human says < hey friend >
+the next thing I want to happen is the robot announced < hey friend >
+then after that he said < hi there friend >
+okay heres what happens next the robot will say < hi there friend >
+okay heres what happens next she will say < hello there friend >
+alright then robot < hello there friend >
+the next thing I want to happen is he announced < hey there friend >
+later robot is announcing < hey there friend >
+then the human will say < hi robot >
+alright then the robot announced < hello robot >
+the next thing I want to happen is she announces < hey robot >
+next human will announce < hi there robot >
+then after that robot is saying < hi there robot >
+the next thing I want to happen is human announced < hello there robot >
+robot will say < hello there robot >
+next the human will announce < hey there robot >
+they will say < how do you do >
+alright then robot announced < how do you do >
+then after that they will announce < how are you >
+then it announced < how are you >
+then after that they announced < how are you friend >
+later he is saying < how do you do robot >
+okay heres what happens next robot announces < how do you do robot >
+then robot announces < how are you robot >
+later the robot will announce < hi how do you do >
+she < hello how do you do >
+then after that it will announce < hello how do you do >
+alright then the human is saying < hey how do you do >
+next the robot says < hey how do you do >
+next she is saying < hi there how do you do >
+later the robot said < hi there how do you do >
+then after that the human announced < hello there how do you do >
+the robot announced < hello there how do you do >
+then after that he announces < hey there how do you do >
+the robot will say < hey there how do you do >
+okay heres what happens next the human announces < hi how are you >
+okay heres what happens next it is announcing < hi how are you >
+the next thing I want to happen is human announces < hello how are you >
+the next thing I want to happen is the robot < hello how are you >
+he says < hey how are you >
+next the robot announces < hey how are you >
+then the robot says < hi there how are you >
+then after that it is saying < hey there how are you >
+it < hi how do you do friend >
+then human is announcing < hello how do you do friend >
+then after that they will say < hey how do you do friend >
+the next thing I want to happen is she said < hi there how do you do friend >
+later she said < hello there how do you do friend >
+the next thing I want to happen is she will announce < hey there how do you do friend >
+later it will announce < hey there how do you do friend >
+okay heres what happens next human is announcing < hi how are you friend >
+okay heres what happens next the robot says < hi how are you friend >
+next human is saying < hello how are you friend >
+then it said < hello how are you friend >
+okay heres what happens next robot will announce < hey how are you friend >
+alright then it announces < hi there how are you friend >
+the next thing I want to happen is the robot < hello there how are you friend >
+later human said < hey there how are you friend >
+the robot is saying < hey there how are you friend >
+then after that human announced < hi how do you do robot >
+the next thing I want to happen is the robot announced < hi how do you do robot >
+then robot announced < hello how do you do robot >
+later she will announce < hey how do you do robot >
+next it said < hey how do you do robot >
+then after that robot says < hello there how do you do robot >
+then after that robot announced < hey there how do you do robot >
+the next thing I want to happen is he says < hi how are you robot >
+the next thing I want to happen is it said < hi how are you robot >
+then he will say < hello how are you robot >
+okay heres what happens next robot will say < hello how are you robot >
+he < hey how are you robot >
+okay heres what happens next she said < hello there how are you robot >
+it is announcing < hello there how are you robot >
+then the human announces < hey there how are you robot >
+robot says < hey there how are you robot >
+next human will say < greet >
+it is saying < greet >
+then robot says < greets >
+she announces < greeted >
+then after that it says < greeted >
+then after that the robot is announcing < greeting >
+then he says < welcome >
+later it says < welcome >
+later they announced < welcomes >
+then the robot is saying < welcomes >
+okay heres what happens next he says < welcomed >
+okay heres what happens next the robot is announcing < welcomed >
+then the robot announces < welcoming >
+she will say < greet friend >
+next it will announce < greets friend >
+she will say < greeted friend >
+next robot announced < greeted friend >
+then the human will say < greeting friend >
+okay heres what happens next the human announces < welcome friend >
+then after that human will announce < welcomes friend >
+then after that robot will say < welcomes friend >
+next she is saying < welcomed friend >
+then it is saying < welcomed friend >
+alright then human will announce < welcoming friend >
+later robot is announcing < welcoming friend >
+then after that the human said < greet robot >
+later it is announcing < greet robot >
+okay heres what happens next the human will say < greets robot >
+next robot announces < greets robot >
+okay heres what happens next robot will say < greeted robot >
+okay heres what happens next the human said < greeting robot >
+later the human < welcome robot >
+later the robot will announce < welcomes robot >
+the next thing I want to happen is she will say < welcomed robot >
+the next thing I want to happen is it said < welcomed robot >
+the next thing I want to happen is human announces < welcoming robot >
+okay heres what happens next it announces < welcoming robot >
+next the human will say < greet his friend >
+then robot will say < greet his friend >
+then after that the robot announces < greets his friend >
+then after that robot is saying < greeted his friend >
+alright then human will say < greeting his friend >
+the robot will say < greeting his friend >
+then she is saying < welcome his friend >
+later robot says < welcome his friend >
+alright then robot said < welcomes his friend >
+they will say < welcomed his friend >
+the human said < welcoming his friend >
+alright then it said < welcoming his friend >
+then after that human will announce < greet her friend >
+then after that it said < greet her friend >
+alright then human announced < greets her friend >
+then after that the robot says < greets her friend >
+okay heres what happens next she announces < greeted her friend >
+then robot said < greeted her friend >
+later she will announce < greeting her friend >
+okay heres what happens next the robot announced < greeting her friend >
+the human announces < welcome her friend >
+then the robot announces < welcome her friend >
+he will announce < welcomes her friend >
+then after that human says < welcomed her friend >
+okay heres what happens next the robot announces < welcomed her friend >
+the robot says < welcoming her friend >
+alright then robot says < greet its friend >
+human is saying < greets its friend >
+the next thing I want to happen is the robot is announcing < greets its friend >
+alright then robot says < greeted its friend >
+the next thing I want to happen is the human < greeting its friend >
+then after that he will announce < welcome its friend >
+alright then it will announce < welcome its friend >
+then the human announces < welcomes its friend >
+it will announce < welcomes its friend >
+then the human announces < welcomed its friend >
+the next thing I want to happen is the robot announces < welcomed its friend >
+later the human announced < greet his robot >
+next the robot announced < greet his robot >
+the next thing I want to happen is he announces < greets his robot >
+then after that the robot is saying < greets his robot >
+the next thing I want to happen is human is saying < greeted his robot >
+next she said < greeting his robot >
+later robot announced < greeting his robot >
+the next thing I want to happen is robot is announcing < welcomes his robot >
+then after that human announced < welcomed his robot >
+next it is saying < welcomed his robot >
+then after that he says < welcoming his robot >
+it is announcing < welcoming his robot >
+okay heres what happens next she will say < greet her robot >
+okay heres what happens next it is saying < greet her robot >
+later they said < greets her robot >
+okay heres what happens next it < greets her robot >
+later the human said < greeted her robot >
+the next thing I want to happen is it < greeted her robot >
+the next thing I want to happen is human says < greeting her robot >
+the next thing I want to happen is the robot says < greeting her robot >
+then after that it says < welcome her robot >
+then after that robot will say < welcomes her robot >
+later the human is announcing < welcomed her robot >
+the next thing I want to happen is the robot is announcing < welcomed her robot >
+okay heres what happens next human < welcoming her robot >
+then the robot is saying < welcoming her robot >
+then after that the robot will announce < greet its robot >
+okay heres what happens next the robot will announce < greets its robot >
+she announced < greeted its robot >
+okay heres what happens next robot is saying < greeted its robot >
+later robot < greeting its robot >
+okay heres what happens next she said < welcome its robot >
+okay heres what happens next it will announce < welcome its robot >
+the next thing I want to happen is the human will announce < welcomes its robot >
+the next thing I want to happen is the robot announced < welcomes its robot >
+later she says < welcomed its robot >
+later the robot is announcing < welcomed its robot >
+human announces < welcoming its robot >
+later the human is saying < greet the friend >
+okay heres what happens next robot announced < greet the friend >
+okay heres what happens next the human < greets the friend >
+okay heres what happens next it will announce < greets the friend >
+alright then the human will say < greeted the friend >
+the next thing I want to happen is she said < welcome the friend >
+it announced < welcome the friend >
+next the human is saying < welcomes the friend >
+alright then the robot < welcomes the friend >
+alright then it announced < welcomed the friend >
+robot announced < welcoming the friend >
+later the human is announcing < greet a friend >
+alright then it will say < greet a friend >
+then after that he said < greets a friend >
+the next thing I want to happen is the robot announces < greets a friend >
+later they will announce < greeted a friend >
+okay heres what happens next it said < greeted a friend >
+the next thing I want to happen is it will say < greeting a friend >
+okay heres what happens next the human is announcing < welcome a friend >
+next robot will announce < welcome a friend >
+then he will announce < welcomes a friend >
+the next thing I want to happen is the robot announced < welcomes a friend >
+okay heres what happens next it announced < welcomed a friend >
+she is saying < welcoming a friend >
+then robot is announcing < welcoming a friend >
+then she is saying < greet the robot >
+alright then robot is saying < greet the robot >
+human is saying < greets the robot >
+then after that it is saying < greets the robot >
+the next thing I want to happen is the robot is announcing < greeted the robot >
+then she said < greeting the robot >
+okay heres what happens next robot will say < greeting the robot >
+then after that she will announce < welcome the robot >
+the next thing I want to happen is the robot is saying < welcome the robot >
+then he said < welcomes the robot >
+the next thing I want to happen is robot is announcing < welcomes the robot >
+then after that she is saying < welcomed the robot >
+okay heres what happens next robot said < welcomed the robot >
+later robot is announcing < welcoming the robot >
+then she announces < greet a robot >
+the human < greets a robot >
+the next thing I want to happen is robot will announce < greets a robot >
+the next thing I want to happen is she says < greeted a robot >
+then after that the robot announced < greeted a robot >
+later human said < greeting a robot >
+then after that robot announces < greeting a robot >
+robot announces < welcome a robot >
+next human announced < welcomes a robot >
+the robot is saying < welcomes a robot >
+okay heres what happens next he will announce < welcomed a robot >
+the next thing I want to happen is it is announcing < welcomed a robot >
+okay heres what happens next he will say < welcoming a robot >
+he will announce < yes >
+next the robot is saying < yes >
+alright then human is announcing < confirmed >
+alright then the robot said < confirmed >
+alright then she says < affirmative >
+then after that the robot is announcing < affirmative >
+later she said < yep >
+later they will announce < uh huh >
+next the robot announces < uh huh >
+next she said < yeah >
+robot will say < yeah >
+it announced < correct >
+she is saying < yes to the friend >
+then after that she said < confirmed to the friend >
+next the robot announces < confirmed to the friend >
+then they will say < affirmative to the friend >
+later the robot says < affirmative to the friend >
+later the human < yep to the friend >
+then after that robot is announcing < uh huh to the friend >
+then after that robot said < yeah to the friend >
+next the robot announced < correct to the friend >
+later she will say < yes to a friend >
+next the robot will say < yes to a friend >
+later he is announcing < confirmed to a friend >
+the next thing I want to happen is robot announced < confirmed to a friend >
+the robot announces < affirmative to a friend >
+then he will announce < yep to a friend >
+later it is saying < yep to a friend >
+later human will say < uh huh to a friend >
+later the robot is announcing < uh huh to a friend >
+later human said < correct to a friend >
+okay heres what happens next the robot will say < correct to a friend >
+the next thing I want to happen is it is announcing < yes to the robot >
+the next thing I want to happen is she will announce < confirmed to the robot >
+later it is announcing < confirmed to the robot >
+then she is saying < affirmative to the robot >
+robot says < affirmative to the robot >
+the next thing I want to happen is they will say < yep to the robot >
+it announces < yep to the robot >
+okay heres what happens next it said < uh huh to the robot >
+she said < correct to the robot >
+next she is saying < yes to a robot >
+the next thing I want to happen is it said < yes to a robot >
+then robot announces < confirmed to a robot >
+then after that human says < affirmative to a robot >
+later robot says < affirmative to a robot >
+the next thing I want to happen is human announced < yep to a robot >
+the next thing I want to happen is robot is announcing < yep to a robot >
+he said < uh huh to a robot >
+later he will announce < yeah to a robot >
+it is saying < yeah to a robot >
+the human said < correct to a robot >
+then after that it announces < correct to a robot >
+then he announces < affirm >
+okay heres what happens next it announced < affirm >
+okay heres what happens next they < affirms >
+alright then human says < affirmed >
+then after that robot is announcing < confirm >
+alright then she announces < confirms >
+next the human is announcing < no >
+then the robot announced < no >
+next the robot < denied >
+the next thing I want to happen is it says < no to the friend >
+then they < denied to a friend >
+alright then robot is saying < denied to a friend >
+then after that human is saying < no to the robot >
+the next thing I want to happen is the robot said < no to the robot >
+okay heres what happens next human is saying < denied to the robot >
+then after that it announced < denied to the robot >
+then after that he is saying < denied to a robot >
+alright then the robot said < denied to a robot >
+the next thing I want to happen is he < deny >
+alright then the robot announced < deny >
+okay heres what happens next robot < thanks >
+later the robot announced < thank you >
+alright then robot will say < I appreciate it >
+then the human will say < I appreciate that >
+then after that robot announces < thank the friend >
+next she announced < thanks the friend >
+later the robot announced < thanks the friend >
+then after that he announced < thanked the friend >
+then after that the robot says < thanked the friend >
+okay heres what happens next he announces < express gratitude the friend >
+the next thing I want to happen is it will say < express gratitude the friend >
+later human announces < expresses gratitude the friend >
+okay heres what happens next robot is announcing < expresses gratitude the friend >
+okay heres what happens next she will say < expressed gratitude the friend >
+then the robot < expressed gratitude the friend >
+okay heres what happens next it is saying < thankful the friend >
+alright then it announces < thank a friend >
+then after that she will say < thanks a friend >
+okay heres what happens next robot is announcing < thanks a friend >
+next it announces < thanked a friend >
+he said < express gratitude a friend >
+the robot will say < expresses gratitude a friend >
+later they < expressed gratitude a friend >
+okay heres what happens next they will say < thankful a friend >
+then after that she says < thank the robot >
+okay heres what happens next it announces < thank the robot >
+then robot is announcing < thanks the robot >
+robot said < thanked the robot >
+later she announced < express gratitude the robot >
+later it is announcing < express gratitude the robot >
+okay heres what happens next human says < expresses gratitude the robot >
+alright then it says < expresses gratitude the robot >
+okay heres what happens next the human is announcing < expressed gratitude the robot >
+then after that the robot announced < expressed gratitude the robot >
+the next thing I want to happen is the robot < thankful the robot >
+alright then the human is announcing < thanks a robot >
+next it < thanks a robot >
+next they said < thanked a robot >
+it will announce < thanked a robot >
+then after that she will announce < express gratitude a robot >
+the next thing I want to happen is she announced < expresses gratitude a robot >
+later the human is announcing < expressed gratitude a robot >
+then robot said < expressed gratitude a robot >
+then after that they will announce < thankful a robot >
+the next thing I want to happen is it said < thankful a robot >
+later she will announce < excuse me >
+next the robot will say < excuse me >
+okay heres what happens next he announces < pardon me >
+the next thing I want to happen is robot is saying < ask to be excused >
+later she < asks to be excused >
+okay heres what happens next robot announced < asks to be excused >
+okay heres what happens next it said < asked to be excused >
+later the human will say < sorry >
+alright then robot announces < sorry about that >
+then the human says < I apologize >
+later robot is saying < I apologize >
+it will say < apologies >
+then she is saying < apologize to the friend >
+next the robot announces < apologize to the friend >
+later he announced < apologizes to the friend >
+then after that the robot announces < apologizes to the friend >
+alright then the human will announce < apologized to the friend >
+then robot is announcing < apologized to the friend >
+then human is saying < apologize to a friend >
+next robot is announcing < apologizes to a friend >
+alright then robot says < apologized to a friend >
+the next thing I want to happen is she said < apologize to the robot >
+next it announced < apologize to the robot >
+the next thing I want to happen is he will announce < apologizes to the robot >
+the robot is saying < apologizes to the robot >
+the next thing I want to happen is the robot is announcing < apologized to the robot >
+the next thing I want to happen is she will announce < apologizes to a robot >
+then it said < apologizes to a robot >
+later it says < apologized to a robot >
+okay heres what happens next human will say < can I have your attention >
+the next thing I want to happen is robot announced < can I have your attention >
+next human announces < hey >
+then robot is announcing < hey >
+okay heres what happens next human said < gets their attention >
+then they will announce < got their attention >
+the next thing I want to happen is the robot announced < got their attention >
+then the human announced < getting their attention >
+next it will say < getting their attention >
+after that she is announcing < asks for their attention >
+then after that the robot is announcing < asks for their attention >
+next robot said < bye >
+then after that it will announce < alright bye >
+the next thing I want to happen is it announced < okay then bye >
+alright then the robot will announce < alrighty bye >
+then after that the human said < okay bye >
+the next thing I want to happen is robot will announce < goodbye >
+okay heres what happens next the robot is announcing < alright goodbye >
+the next thing I want to happen is the human announced < okay then goodbye >
+then after that robot will say < okay then goodbye >
+next the human said < see you later >
+the next thing I want to happen is it announced < see you later >
+next the robot says < alright see you later >
+then after that the human announced < okay then see you later >
+the next thing I want to happen is it is saying < okay then see you later >
+then the human said < alrighty see you later >
+then after that it says < alrighty see you later >
+then human will announce < okay see you later >
+it says < okay see you later >
+then after that they said < okay then farewell >
+the next thing I want to happen is robot will announce < okay then farewell >
+robot is announcing < alrighty farewell >
+next she is announcing < okay farewell >
+the next thing I want to happen is human is announcing < talk to you later >
+then after that the human < okay then talk to you later >
+later human will say < alrighty talk to you later >
+okay heres what happens next the robot < alrighty talk to you later >
+then after that it will announce < okay talk to you later >
+she announces < nice talking to you >
+later the robot says < nice talking to you >
+the next thing I want to happen is human said < alright nice talking to you >
+later the robot announced < alright nice talking to you >
+the human < okay then nice talking to you >
+then after that robot announced < okay then nice talking to you >
+later he will announce < alrighty nice talking to you >
+later it will say < alrighty nice talking to you >
+later human says < okay nice talking to you >
+alright then the robot < okay nice talking to you >
+then the robot is saying < alright until next time >
+later he said < okay then until next time >
+later the human < alrighty until next time >
+then she announced < okay until next time >
+later she is saying < it was great talking to you >
+alright then the human is announcing < alright it was great talking to you >
+alright then robot is announcing < alright it was great talking to you >
+then after that she will announce < okay then it was great talking to you >
+it announced < okay then it was great talking to you >
+next she is saying < alrighty it was great talking to you >
+later robot said < alrighty it was great talking to you >
+the next thing I want to happen is he is saying < okay it was great talking to you >
+the next thing I want to happen is it will announce < okay it was great talking to you >
+later the human says < bye for now >
+okay heres what happens next the robot announces < bye for now >
+okay heres what happens next he will say < alright bye for now >
+okay heres what happens next it announces < alright bye for now >
+after that he announced < alrighty bye for now >
+next it is saying < alrighty bye for now >
+after that he < okay bye for now >
+later it is saying < okay bye for now >
+after that she will announce < goodbye for now >
+then robot will say < goodbye for now >
+then the human will say < alright goodbye for now >
+the next thing I want to happen is it is saying < alright goodbye for now >
+later they will announce < okay then goodbye for now >
+next the robot will announce < okay then goodbye for now >
+next she will say < alrighty goodbye for now >
+okay heres what happens next it announces < alrighty goodbye for now >
+robot is announcing < okay goodbye for now >
+okay heres what happens next she is announcing < bye friend >
+then robot < bye friend >
+next it announces < alright bye friend >
+next he < okay then bye friend >
+then after that it announces < okay then bye friend >
+later the robot will say < alrighty bye friend >
+then the human will say < goodbye friend >
+the next thing I want to happen is the robot will announce < goodbye friend >
+human is announcing < alright goodbye friend >
+alright then they announced < okay then goodbye friend >
+then she said < alrighty goodbye friend >
+later robot says < alrighty goodbye friend >
+then she is saying < okay goodbye friend >
+then after that the robot said < okay goodbye friend >
+alright then the robot announced < see you later friend >
+then human < alright see you later friend >
+okay heres what happens next robot is announcing < alright see you later friend >
+the next thing I want to happen is he will announce < okay then see you later friend >
+it will announce < okay then see you later friend >
+later human says < alrighty see you later friend >
+he < okay see you later friend >
+okay heres what happens next robot said < okay see you later friend >
+okay heres what happens next it said < farewell friend >
+alright then the robot is announcing < okay then farewell friend >
+later he will say < alrighty farewell friend >
+then it announces < alrighty farewell friend >
+the next thing I want to happen is human announced < okay farewell friend >
+alright then the human announced < talk to you later friend >
+then the robot is announcing < talk to you later friend >
+okay heres what happens next the robot is saying < alright talk to you later friend >
+then the human will announce < okay then talk to you later friend >
+next the robot says < okay then talk to you later friend >
+the next thing I want to happen is they said < alrighty talk to you later friend >
+the next thing I want to happen is robot will say < alrighty talk to you later friend >
+then human is saying < okay talk to you later friend >
+then after that robot says < okay talk to you later friend >
+then it announced < nice talking to you friend >
+then after that it will announce < alright nice talking to you friend >
+the next thing I want to happen is he said < okay then nice talking to you friend >
+then after that it says < okay then nice talking to you friend >
+okay heres what happens next it says < alrighty nice talking to you friend >
+the next thing I want to happen is the human is saying < okay nice talking to you friend >
+then after that robot is saying < okay nice talking to you friend >
+then after that human announced < until next time friend >
+alright then it < until next time friend >
+the next thing I want to happen is the human says < alright until next time friend >
+next it announced < alright until next time friend >
+then they < okay then until next time friend >
+then robot will say < okay then until next time friend >
+the next thing I want to happen is the human said < alrighty until next time friend >
+next human says < okay until next time friend >
+the next thing I want to happen is it announced < okay until next time friend >
+it is announcing < it was great talking to you friend >
+okay heres what happens next the human announced < alright it was great talking to you friend >
+then after that robot is announcing < alright it was great talking to you friend >
+then they said < okay then it was great talking to you friend >
+it is announcing < okay then it was great talking to you friend >
+he < alrighty it was great talking to you friend >
+the robot is saying < okay it was great talking to you friend >
+alright then it said < bye for now friend >
+she will announce < alright bye for now friend >
+okay heres what happens next robot says < alright bye for now friend >
+okay heres what happens next she < okay then bye for now friend >
+later robot announced < okay then bye for now friend >
+then he < okay bye for now friend >
+it announces < okay bye for now friend >
+then the human announced < goodbye for now friend >
+okay heres what happens next robot is announcing < goodbye for now friend >
+after that the human announces < alright goodbye for now friend >
+okay heres what happens next it said < alright goodbye for now friend >
+the next thing I want to happen is she says < okay then goodbye for now friend >
+the next thing I want to happen is the robot said < okay then goodbye for now friend >
+he < alrighty goodbye for now friend >
+it < alrighty goodbye for now friend >
+the next thing I want to happen is he is saying < okay goodbye for now friend >
+then after that the robot is announcing < okay goodbye for now friend >
+later she is announcing < bye robot >
+the next thing I want to happen is human will say < alright bye robot >
+alright then it is saying < alright bye robot >
+alright then the robot says < okay then bye robot >
+later she will say < alrighty bye robot >
+next he announced < okay bye robot >
+then robot announced < okay bye robot >
+the next thing I want to happen is they will say < goodbye robot >
+alright then robot < goodbye robot >
+the next thing I want to happen is she will say < alright goodbye robot >
+alright then robot is announcing < alright goodbye robot >
+next he is announcing < okay then goodbye robot >
+alright then the robot says < okay then goodbye robot >
+okay heres what happens next the human is saying < alrighty goodbye robot >
+then after that it < alrighty goodbye robot >
+he will announce < okay goodbye robot >
+okay heres what happens next the human said < see you later robot >
+next it will say < alright see you later robot >
+then it announces < okay then see you later robot >
+alright then human announces < alrighty see you later robot >
+the next thing I want to happen is robot announces < alrighty see you later robot >
+alright then robot says < okay see you later robot >
+then after that the robot announces < farewell robot >
+then after that it is announcing < alright farewell robot >
+next he said < okay then farewell robot >
+then robot announced < okay then farewell robot >
+then it is saying < alrighty farewell robot >
+next they will announce < okay farewell robot >
+next robot said < okay farewell robot >
+then it will say < talk to you later robot >
+okay heres what happens next the human will say < alright talk to you later robot >
+later he announced < alrighty talk to you later robot >
+alright then the robot is announcing < alrighty talk to you later robot >
+the next thing I want to happen is it announced < okay talk to you later robot >
+later human is announcing < nice talking to you robot >
+then after that the human is saying < alright nice talking to you robot >
+the robot announced < alright nice talking to you robot >
+okay heres what happens next the human < okay nice talking to you robot >
+next human announces < until next time robot >
+okay heres what happens next it announced < until next time robot >
+then after that they will say < alright until next time robot >
+alright then the robot will say < alright until next time robot >
+the next thing I want to happen is they will announce < okay then until next time robot >
+okay heres what happens next it announced < okay then until next time robot >
+the next thing I want to happen is he announced < alrighty until next time robot >
+later robot announced < alrighty until next time robot >
+then he announced < okay until next time robot >
+okay heres what happens next human will say < it was great talking to you robot >
+robot said < it was great talking to you robot >
+then after that she is announcing < alright it was great talking to you robot >
+okay heres what happens next it will announce < alright it was great talking to you robot >
+he announced < okay then it was great talking to you robot >
+later robot announces < okay then it was great talking to you robot >
+okay heres what happens next she said < alrighty it was great talking to you robot >
+alright then robot is saying < okay it was great talking to you robot >
+alright then the human < bye for now robot >
+the next thing I want to happen is it will announce < bye for now robot >
+human is saying < alright bye for now robot >
+after that he says < okay then bye for now robot >
+then the robot < okay then bye for now robot >
+alright then he will announce < alrighty bye for now robot >
+after that the robot is saying < alrighty bye for now robot >
+okay heres what happens next they said < okay bye for now robot >
+after that it is announcing < okay bye for now robot >
+after that she will announce < goodbye for now robot >
+later robot said < goodbye for now robot >
+okay heres what happens next robot is saying < alright goodbye for now robot >
+alright then the human is announcing < okay then goodbye for now robot >
+the next thing I want to happen is the robot is saying < okay then goodbye for now robot >
+alright then he announced < alrighty goodbye for now robot >
+then after that the robot announces < alrighty goodbye for now robot >
+next he will say < okay goodbye for now robot >
+it will announce < okay goodbye for now robot >

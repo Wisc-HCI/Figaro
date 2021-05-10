@@ -1,0 +1,1866 @@
+<!--
+TODO:
+
+-->
+<html>
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv="expires" content='0'>
+  <meta http-equiv="pragma" content='no-cache'>
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/fabric.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+  <script src='/static/spectrum.js'></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel='stylesheet' href='/static/spectrum.css' />
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col" style="padding:0">
+        <h1 class="text-center">DRAW THE PHYSICAL LAYOUT</h1>
+      </div>
+    </div>
+    <div class = "row" style="padding-left: 15px">
+      <div class="col-4">
+        <span>MODE</span>
+        <div class="btn-group">
+          <button id="regionEdit" type="button" class="btn btn-outline-secondary btn-lg">Regions</button>
+          <button id="objectEdit" type="button" class="btn btn-secondary btn-lg">Objects</button>
+        </div>
+      </div>
+      <div id="objectToolbox" class = "col">
+        <span>TOOLBOX</span>
+        <button id="circle" class="btn btn-outline-secondary btn-lg" type="button"><div class="circ"></div></button>
+        <button id="rectangle" class="btn btn-outline-secondary btn-lg" type="button"><div class="rect"></div></button>
+        <!--button id="test" class="btn btn-outline-secondary" type="button">testing</button-->
+      </div>
+      <div id="regionToolbox" class = "col" hidden>
+        <span>TOOLBOX</span>
+        <button id="rectSelect" class="btn btn-outline-secondary btn-lg" type="button"><div class="dashRect" /></button>
+        <button id="freeSelect" class="btn btn-outline-secondary btn-lg" type="button"><svg width="30" height="30"><path d="M0,30 C10,00 20,30 30,0" stroke="grey"stroke-dasharray="4" stroke-width="3" fill="none"/></svg></button>
+      </div>
+    </div>
+
+    <div class="row text-center" style="padding: 15px">
+      <div class="col">
+        <canvas id="c" width="720" height="540" style = 'border: solid black 3px;'></canvas>
+      </div>
+
+      <div class="col">
+        <div class="row">
+          <span>LEGEND</span>
+        </div>
+        <div class="row">
+          <span id="emptyLegend">no regions are defined</span>
+          <div class="container" style="max-height:300px; overflow-y:auto">
+            <table id="legendTable" class=" table order-list">
+              <tbody>
+                <tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr />
+
+        <!--shared-->
+        <div class="row">
+          <h3 id="toolpaneTitle"></h3>
+        </div>
+        <div class="row">
+          <button id="label" class="btn btn-outline-secondary" type="button" hidden>Edit Label</button>
+        </div>
+
+        <!--object specific-->
+        <div class="row">
+          <button id="group" class="btn btn-outline-secondary" type="button" hidden>Group</button>
+        </div>
+        <div class="row">
+          <button id="ungroup" class="btn btn-outline-secondary" type="button" hidden>Ungroup</button>
+        </div>
+
+        <!--region specific-->
+        <div class="row">
+          <button id="color" class="btn btn-outline-secondary" type="button" hidden>Change Color</button>
+        </div>
+        <div class="row">
+          <button id="addToRegion" class="btn btn-outline-secondary" type="button" hidden>Expand Region</button>
+        </div>
+        <div class="row">
+          <button id="removeFromRegion" class="btn btn-outline-secondary" type="button" hidden>Shrink Region</button>
+        </div>
+
+        <!--shared-->
+        <div class="row">
+          <button id="delete" class="btn btn-outline-danger" type="button" hidden>Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-left:20%; padding-right: 20%">
+      <div class="col-8">
+        <span id="helper"></span>
+      </div>
+      <div class="col-2">
+        <button id="done" class="btn btn-outline-secondary btn-lg" type="button">Done</button>
+      </div>
+      <div class="col-2">
+        <button id="cancel" class="btn btn-outline-secondary btn-lg" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!--modal to pick brush-->
+  <div id="updateBrushModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h5>Expand region:</h5>
+          <div class="row text-center">
+            <div class="col">
+              <button id="updateRect" class="btn btn-outline-secondary" type="button">Add with <div class="dashRect"/></button>
+            </div>
+            <div class="col">
+              <button id="updateFree" class="btn btn-outline-secondary" type="button">Add with <svg width="30" height="30"><path d="M0,30 C10,00 20,30 30,0" stroke="grey"stroke-dasharray="4" stroke-width="3" fill="none"/></svg></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--modal to pick brush-->
+  <div id="removeBrushModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h5>Shrink region:</h5>
+          <div class="row text-center">
+            <div class="col">
+              <button id="removeRect" class="btn btn-outline-secondary" type="button">Remove with <div class="dashRect"/></button>
+            </div>
+            <div class="col">
+              <button id="removeFree" class="btn btn-outline-secondary" type="button">Remove with <svg width="30" height="30"><path d="M0,30 C10,00 20,30 30,0" stroke="grey"stroke-dasharray="4" stroke-width="3" fill="none"/></svg></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    fabric.Object.prototype.objectCaching = false;
+    //when the document loads, set up the communication and load the previously saved drawing
+    //for ease of updating, the port and IP address info are in a common js script (\static\common_functions.js)
+    var canvas = new fabric.Canvas('c', { width: 720, height: 540, stateful: true, uniScaleTransform: true, backgroundColor: 'white', renderOnAddRemove:false});
+    var mode = "NONE"
+    var shape, isDown, origX, origY;
+
+    var gridX = 24
+    var gridY = 18
+    var gridMultiplier = 3
+    var canvasX = 720
+    var canvasY = 540
+
+    $(document).ready(function(){
+      //set up the socket comm
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            //TODO: first, if done, needs to send the data off to ctrl and projector
+            //(not relevant without voice commands)
+            window.location.href = msg.response
+          }
+      });
+
+      //load the previous drawing
+      socket.emit('get_current_layout', {sender:'tablet'})
+      socket.on('layout_stream', function(msg) {
+        if(msg.update){
+          gridMultiplier = msg.gridMultiplier
+          console.log(msg.gridMultiplier)
+          if (msg.layout !== 'blank') {
+            console.log("udpating layout")
+            canvas.clear()
+            canvas.setDimensions({ width: canvasX, height: canvasY });
+            console.log(canvas)
+            canvas.loadFromDatalessJSON(msg.layout)
+            canvas.preserveObjectStacking = true
+            labelSet = []
+            regionLegend = {}
+            regionDef = []
+            canvas.getObjects().forEach(function (object){
+              if(typeof object.text !== 'undefined')
+              {
+                labelSet.push(object)
+                object.evented = false
+                object.selectable = false
+              }
+              else if(typeof object.region !== 'undefined')
+              {
+                let x = Math.floor(object.left * gridX / canvasX)
+                let y = Math.floor(object.top * gridY / canvasY)
+                setRegionGridValue(x, y, object)
+                object.evented = false
+                object.selectable = false
+                canvas.sendToBack(object)
+                if(typeof regionLegend[object.region] === 'undefined' && object.region !== 'none')
+                {
+                  regionLegend[object.region] = object.fill
+                }
+              }
+              else {
+                object.hasRotatingPoint = false
+                object.cornerSize = 20
+                object.cornerColor = 'black'
+                object.strokeUniform = true
+              }
+            })
+            updateLegend()
+            canvas.requestRenderAll()
+          }
+          else {
+            canvas.preserveObjectStacking = true
+            let w = (canvasX / gridX)
+            let h = (canvasY / gridY)
+            let x=0
+            let y=0
+            for(x = 0; x < gridX; x++)
+            {
+              for(y=0; y < gridY; y++)
+              {
+                shape = new fabric.Rect({
+                    left:x*w,
+                    top:y*h,
+                    originX: 'left',
+                    originY: 'top',
+                    width: w,
+                    height: h,
+                    angle: 0,
+                    fill: '',
+                    strokeWidth: 1,
+                    stroke: 'rgba(220,220,220, .5)',
+                    strokeDashArray: [10, 5],
+                    evented: false,
+                    selectable: false,
+                    //objectCaching: false,
+                    lockMovementX: true,
+                    lockMovementY: true,
+                    strokeUniform: true,
+                    tempSelected: false,
+                    region: "none",
+                    rgb: "0,0,0"
+                });
+                canvas.add(shape);
+                setRegionGridValue(x,y,shape)
+
+              }
+            }
+            canvas.requestRenderAll()
+          }
+        }
+      });
+
+      //set up button handlers
+      $("#cancel").click(async function(){
+        console.log("CANCEL")
+        response = socket.emit('tablet_trigger_nav', {message: 'cancel_physicallayout', sender: 'tablet'});
+      });
+
+      //done sends the current environment to the server to update
+      $("#done").click(async function(){
+        console.log("DONE")
+        $("#objectEdit").click()
+        //create datastructure (while also checking if each grouped item has a name)
+        let groups = canvas.getObjects();
+
+        //console.log(canvas.getObjects())
+        if(canvas.getObjects().length > 0)
+        {
+          //first, get a list of all of the children we need to examine
+          var objectDataList = []
+          for (let group of groups)
+          {
+            //for each object on the canvas:
+            //build list of children, but don't include labels
+            if(typeof group.text === 'undefined' && typeof group.name !== 'undefined')
+            {
+              objectDataList.push(findChild(group, {}, group.name))
+            }
+
+          }
+
+          let regionNames = []
+          regionDef.forEach(function (cell){
+            if(!regionNames.includes(cell.region) && cell.region !== "none")
+            {
+              regionNames.push(cell.region)
+            }
+          })
+
+          let regionDataList = []
+          regionNames.forEach(function(name){
+            if(name !== 'none')
+            {
+              let color = regionLegend[name].replace(/[^\d,.]/g, '').split(',')
+              regionDataList.push([findRegion({}, name), parseFloat(color[0]) , parseFloat(color[1]) , parseFloat(color[2])])
+            }
+          })
+          //console.log(regionDataList)
+          //finally, send the message
+          let env = JSON.stringify(canvas.toDatalessJSON(['shape', 'name', 'region', 'rgb']));
+          //console.log(env)
+          response = socket.emit('tablet_trigger_nav', {'message':'end_physicallayout', 'sender':'tablet', 'layout':env, 'objectData':objectDataList, 'regionData': regionDataList, 'x':gridX*gridMultiplier, 'y':gridY*gridMultiplier});
+
+        }
+        else
+        {
+          alert("Please specify at least one thing in the physical layout.")
+        }
+
+
+      });
+
+    });
+
+    function findRegion(currentList, regionName){
+      regionDef.forEach(function(cell){
+        if(cell.region === regionName)
+        {
+          let x = Math.floor(cell.left * gridX / canvasX) * gridMultiplier
+          let y = Math.floor(cell.top *gridY / canvasY) * gridMultiplier
+          //console.log(x + " and " + y)
+          if(typeof currentList[regionName] === 'undefined')
+          {
+            currentList[regionName] = []
+          }
+
+          for(let xn = 0; xn<gridMultiplier; xn++)
+          {
+            for(let yn = 0; yn<gridMultiplier; yn++)
+            {
+              currentList[regionName].push({'x':x+xn, 'y':y+yn})
+            }
+          }
+        }
+      })
+      return currentList
+    }
+
+    //used to build current grid datastructure of environment
+    function findChild(obj, currentList, objName) {
+
+      if(typeof obj._objects === 'undefined')
+      {
+          obj.name = objName
+          obj.calcCoords()
+
+          //console.log(obj.name)
+          let mObject = obj.calcTransformMatrix();
+
+          //console.log(obj.shape,": ", fabric.util.qrDecompose(mObject));
+          //console.log(mObject)
+
+          // use transform to get corners of shape bounding box
+          let params = fabric.util.qrDecompose(mObject)
+          let scalar = Math.round(canvasX/(gridX*gridMultiplier))
+
+          let tl = {'x':Math.round((params.translateX - params.scaleX*obj.width/2)/scalar), 'y':Math.round((params.translateY - params.scaleY*obj.height/2)/scalar)}
+          let tr = {'x':Math.round(tl.x + params.scaleX*obj.width/scalar), 'y':tl.y}
+          let bl = {'x':tl.x, 'y':Math.round(tl.y + params.scaleY*obj.height/scalar)}
+          let br = {'x':Math.round(tl.x + params.scaleX*obj.width/scalar), 'y':Math.round(tl.y + params.scaleY*obj.height/scalar)}
+          //console.log("top left: ", tl);
+          //console.log("top right: ", tr)
+          //console.log("bottom left: ", bl);
+          //console.log("bottom right: ", br)
+
+          if(typeof currentList[objName] === 'undefined')
+          {
+            //doesn't exist, so we make a new one and add it
+            currentList[objName] = []
+          }
+
+          if(obj.shape === 'rectangle')
+          {
+            for(let y = tl.y; y<bl.y; y++)
+            {
+              for(let x = tl.x; x<tr.x; x++)
+              {
+                currentList[objName].push({'x':x, 'y':y})
+              }
+            }
+
+          }
+          else if (obj.shape === 'circle')
+          {
+
+            //set up variables
+            let rx = (tr.x - tl.x)/2
+            let ry = (tl.y - bl.y)/2
+            let h = (tl.x + tr.x)/2
+            let k = (tl.y + bl.y)/2
+
+            for(let y = tl.y; y<bl.y; y++)
+            {
+              for(let x = tl.x; x<tr.x; x++)
+              {
+                if(Math.pow(x-h,2)/Math.pow(rx,2) + Math.pow(y-k,2)/Math.pow(ry,2) <= 1)
+                {
+                  currentList[objName].push({'x':x, 'y':y})
+                }
+              }
+            }
+
+          }
+
+          //currentList.push(obj)
+          return currentList
+
+      }
+      else
+      {
+        //need to keep searching
+        obj._objects.forEach(function (child){
+          if(child.text === undefined)
+          {
+            currentList = findChild(child, currentList, objName)
+          }
+
+        })
+
+        return currentList
+      }
+    }
+
+    /*
+    Canvas functions
+    */
+    //canvas used for drawing
+
+    $("#test").click(function() {
+      console.log(canvas.getObjects())
+    })
+
+    function saveImage() {
+      console.log(canvas.toDataURL({
+        format: 'jpeg', //can be png or jpeg
+        multiplier: 3,
+      }));
+      //let nativeCanvas = document.getElementById('c')
+      //console.log(nativeCanvas.toDataURL())
+    }
+
+    // on mouse up, toggle editingButtons() and do any drawing processing needed
+    canvas.on('mouse:up', function(e) {
+      if(canvas_mode == "regions")
+      {
+        if(mode.includes("RECTSELECT"))
+        {
+            let regionSelectEnd = canvas.getPointer(e);
+
+            let startX = 0
+            let startY = 0
+            let endX = 0
+            let endY = 0
+            if(regionSelectEnd.x > regionSelectStart.x)
+            {
+              startX = regionSelectStart.x
+              endX = regionSelectEnd.x
+            }
+            else {
+              startX = regionSelectEnd.x
+              endX = regionSelectStart.x
+            }
+            if(regionSelectEnd.y > regionSelectStart.y)
+            {
+              startY = regionSelectStart.y
+              endY = regionSelectEnd.y
+            }
+            else {
+              startY = regionSelectEnd.y
+              endY = regionSelectStart.y
+            }
+
+            if(startX < 0){startX = 0}
+            if(startY < 0){startY = 0}
+            if(endX >= canvasX){endX = canvasX-1}
+            if(endY >= canvasY){endY = canvasY-1}
+
+            startX = Math.floor(startX*gridX/canvasX)
+            startY = Math.floor(startY*gridY/canvasY)
+            endX = Math.floor(endX*gridX/canvasX)
+            endY = Math.floor(endY*gridY/canvasY)
+
+            for(x=startX; x<=endX; x++)
+            {
+              for(y=startY; y<=endY; y++)
+              {
+                let obj = getRegionGridValue(x,y)
+
+                if(obj.region === "none" || mode.includes("DEL"))
+                {
+                  obj.set("tempSelected",true)
+                }
+              }
+            }
+        }
+        else if(mode.includes("FREESELECT"))
+        {
+          canvas.selection = true
+        }
+
+        if(mode.includes("MOD"))
+        {
+          defineNewRegion(currentRegionName, regionLegend[currentRegionName])
+          mode = "NONE"
+          document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+          document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        }
+        else if(mode.includes("DEL"))
+        {
+          clearRegionSelection()
+          mode = "NONE"
+          document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+          document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        }
+        else if(mode.includes("SELECT")){
+          defineNewRegion()
+          mode = "NONE"
+          document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+          document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+        }
+
+      }
+      else if(canvas_mode == "objects")
+      {
+        if (mode === "RECTANGLE")
+        {
+          isDown = false;
+          shape.setCoords();  //allows object to be selectable and moveable
+          addNewLabel(shape)
+
+          mode = "NONE"
+          document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+          document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+          document.getElementById("helper").innerHTML = "Drawing mode: NONE"
+
+          canvas.getObjects().forEach(function (item) {
+            if(typeof item.name !== 'undefined')
+            {
+              item.evented = true
+              item.selectable = true
+            }
+            else {
+              item.evented = false
+              item.selectable = false
+            }
+          })
+          canvas.discardActiveObject()
+          setSelection(shape)
+        }
+        else if (mode === "CIRCLE")
+        {
+          isDown = false;
+          shape.setCoords();  //allows object to be selectable and moveable
+          addNewLabel(shape)
+
+          mode = "NONE"
+          document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+          document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+          document.getElementById("helper").innerHTML = "Drawing mode: NONE"
+
+          canvas.getObjects().forEach(function (item) {
+            if(typeof item.name !== 'undefined')
+            {
+              item.evented = true
+              item.selectable = true
+            }
+            else {
+              item.evented = false
+              item.selectable = false
+            }
+          })
+          canvas.requestRenderAll()
+          canvas.discardActiveObject()
+          setSelection(shape)
+        }
+      }
+      updateEditingButtons()
+    })
+
+    //on mouse down, start drawing a circle or a rectangle depending on what mode is selected
+    var regionSelectStart = {}
+    var existingRegionSelection = false
+    var currentRegionName = ""
+    var selectionColor = "rgba(100,119,255,0.5)"
+    var obj_main_fill = "rgba(245,245,245,1)"
+    var obj_main_stroke = "rgba(220,220,220,1)"
+    var obj_light_fill = "rgba(245,245,245,.5)"
+    var obj_light_stroke = "rgba(220,220,220,.5)"
+    var main_alpha = 0.6
+    var activeRegion_alpha = 0.8
+    var selection_alpha = 0.4
+    var defaultGridFill = "rgba(0,0,0,0)"
+    canvas.on('mouse:down', function(o) {
+      if(canvas_mode == "regions")
+      {
+        let pointer = canvas.getPointer(o.e)
+        let clickedCell = getRegionGridValue(Math.floor(pointer.x*gridX/canvasX), Math.floor(pointer.y*gridY/canvasY))
+
+        if(mode === "RECTSELECT")
+        {
+          if(existingRegionSelection)
+          {
+            regionDef.forEach(function (cell){
+              if(cell.region === currentRegionName)
+              {
+                cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+              }
+            })
+          }
+          regionSelectStart = pointer
+          existingRegionSelection = false
+          currentRegionName = ""
+        }
+        else if(mode === "MODRECTSELECT" || mode === "DELRECTSELECT")
+        {
+          regionSelectStart = pointer
+        }
+        else if(mode.includes("FREESELECT"))
+        {
+          if(existingRegionSelection && mode === "FREESELECT")
+          {
+            regionDef.forEach(function (cell){
+              if(cell.region === currentRegionName)
+              {
+                cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+              }
+            })
+            existingRegionSelection = false
+            currentRegionName = ""
+          }
+          canvas.selection = false
+          regionSelectStart = pointer
+
+
+            let x = pointer.x
+            let y = pointer.y
+
+            if(x < 0){x = 0}
+            if(y < 0){y = 0}
+            if(x >= canvasX){x = canvasX-1}
+            if(y >= canvasY){y = canvasY-1}
+
+            x = Math.floor(x*gridX/canvasX)
+            y = Math.floor(y*gridY/canvasY)
+
+            let obj = getRegionGridValue(x,y)
+            let color = ""
+            if(mode.includes("MOD"))
+            {
+              color = regionLegend[currentRegionName].replace(/[^\d,.]/g, '').split(',')
+              color = color[0] + "," + color[1] + "," + color[2]
+              color = "rgba(" + color +",0.3)"
+            }
+            else if(mode.includes("DEL"))
+            {
+              color = regionLegend[currentRegionName].replace(/[^\d,.]/g, '').split(',')
+              color = color[0] + "," + color[1] + "," + color[2]
+              color = "rgba(" + color +",0.3)"
+            }
+            else {
+              color = selectionColor
+            }
+
+            if(obj.region === "none" || mode.includes("DEL"))
+            {
+              obj.set("tempSelected",true)
+              obj.set("fill", color)
+            }
+            canvas.requestRenderAll()
+
+        }
+        else {
+          if(clickedCell.region !== "none")
+          {
+            existingRegionSelection = true
+            let prevRegionName = currentRegionName
+            currentRegionName = clickedCell.region
+
+              regionDef.forEach(function (cell){
+                if(cell.region === currentRegionName)
+                {
+                  cell.set("fill","rgba(" + cell.rgb + "," + activeRegion_alpha + ")")
+                }
+                else if(cell.region === prevRegionName)
+                {
+                  cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+                }
+              })
+          }
+          else {
+            if(existingRegionSelection)
+            {
+
+              regionDef.forEach(function (cell){
+                if(cell.region === currentRegionName)
+                {
+                  cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+                }
+              })
+            }
+            existingRegionSelection = false
+            currentRegionName = ""
+          }
+
+        }
+        canvas.requestRenderAll()
+
+      }
+      else if(canvas_mode == "objects")
+      {
+        if (mode === "RECTANGLE")
+        {
+          isDown = true;
+          var pointer = canvas.getPointer(o.e);
+          origX = pointer.x;
+          origY = pointer.y;
+          var pointer = canvas.getPointer(o.e);
+          shape = new fabric.Rect({
+              left: origX,
+              top: origY,
+              originX: 'left',
+              originY: 'top',
+              width: pointer.x-origX,
+              height: pointer.y-origY,
+              angle: 0,
+              fill: obj_main_fill,
+              strokeWidth: 6,
+              stroke: obj_main_stroke,
+              hasRotatingPoint: false,
+              shape: 'rectangle',
+              cornerSize: 20,
+              cornerColor: 'black',
+              evented: false,
+              selectable: false,
+              strokeUniform: true,
+          });
+          canvas.add(shape);
+        }
+        else if (mode === "CIRCLE")
+        {
+          isDown = true;
+          var pointer = canvas.getPointer(o.e);
+          origX = pointer.x;
+          origY = pointer.y;
+          var pointer = canvas.getPointer(o.e);
+          shape = new fabric.Ellipse({
+              left: origX,
+              top: origY,
+              originX: 'left',
+              originY: 'top',
+              rx: pointer.x-origX,
+              ry: pointer.y-origY,
+              angle: 0,
+              fill: obj_main_fill,
+              strokeWidth: 6,
+              stroke: obj_main_stroke,
+              hasRotatingPoint: false,
+              shape: 'circle',
+              cornerSize: 20,
+              cornerColor: 'black',
+              evented: false,
+              selectable: false,
+              strokeUniform: true,
+          });
+          canvas.add(shape);
+        }
+        else{
+          document.getElementById("helper").innerHTML = ""
+        }
+
+      }
+      updateEditingButtons()
+    })
+
+    //on mouse move, if drawing a rectangle or circle, resize them appropriately.
+    canvas.on('mouse:move', function(o){
+      if(canvas_mode == "regions")
+      {
+        if(mode === "RECTSELECT")
+        {
+
+        }
+        else if(mode.includes("FREESELECT"))
+        {
+          let point = canvas.getPointer(o.e);
+
+          let x = point.x
+          let y = point.y
+
+          if(x < 0){x = 0}
+          if(y < 0){y = 0}
+          if(x >= canvasX){x = canvasX-1}
+          if(y >= canvasY){y = canvasY-1}
+
+          x = Math.floor(x*gridX/canvasX)
+          y = Math.floor(y*gridY/canvasY)
+
+          let obj = getRegionGridValue(x,y)
+          let color = ""
+          if(mode.includes("MOD"))
+          {
+            color = regionLegend[currentRegionName].replace(/[^\d,.]/g, '').split(',')
+            color = color[0] + "," + color[1] + "," + color[2]
+            color = "rgba(" + color +",0.3)"
+          }
+          else if(mode.includes("DEL"))
+          {
+            color = regionLegend[currentRegionName].replace(/[^\d,.]/g, '').split(',')
+            color = color[0] + "," + color[1] + "," + color[2]
+            color = "rgba(" + color +",0.3)"
+          }
+          else {
+            color = selectionColor
+          }
+
+          if(obj.region === "none" || mode.includes("DEL"))
+          {
+            obj.set("tempSelected",true)
+            obj.set("fill", color)
+          }
+          canvas.requestRenderAll()
+        }
+      }
+      else if(canvas_mode == "objects")
+      {
+        if (mode === "RECTANGLE")
+        {
+          if (!isDown) return;
+          let pointer = canvas.getPointer(o.e);
+
+          if(pointer.x < 0)
+          {
+            pointer.x = 0
+          }
+          else if(pointer.x > canvasX)
+          {
+            pointer.x = canvasX
+          }
+
+          if(pointer.y < 0)
+          {
+            pointer.y = 0
+          }
+          else if(pointer.y > canvasY)
+          {
+            pointer.y = canvasY
+          }
+
+          if(origX>pointer.x){
+              shape.set({ left: Math.abs(pointer.x) });
+          }
+          if(origY>pointer.y){
+              shape.set({ top: Math.abs(pointer.y) });
+          }
+
+          shape.set({ width: Math.abs(origX - pointer.x) });
+          shape.set({ height: Math.abs(origY - pointer.y) });
+
+          canvas.requestRenderAll();
+        }
+        else if (mode === "CIRCLE")
+        {
+          if (!isDown) return;
+          let pointer = canvas.getPointer(o.e);
+
+          if(pointer.x < 0)
+          {
+            pointer.x = 0
+          }
+          else if(pointer.x > canvasX)
+          {
+            pointer.x = canvasX
+          }
+
+          if(pointer.y < 0)
+          {
+            pointer.y = 0
+          }
+          else if(pointer.y > canvasY)
+          {
+            pointer.y = canvasY
+          }
+
+          var rx = Math.abs(origX - pointer.x)/2;
+          var ry = Math.abs(origY - pointer.y)/2;
+          if (rx > shape.strokeWidth) {
+            rx -= shape.strokeWidth/2
+          }
+           if (ry > shape.strokeWidth) {
+            ry -= shape.strokeWidth/2
+          }
+          shape.set({ rx: rx, ry: ry});
+
+          if(origX>pointer.x){
+              shape.set({originX: 'right' });
+          } else {
+              shape.set({originX: 'left' });
+          }
+          if(origY>pointer.y){
+              shape.set({originY: 'bottom'  });
+          } else {
+              shape.set({originY: 'top'  });
+          }
+          canvas.requestRenderAll();
+        }
+      }
+    });
+
+    //checks that object has not been moved out of the canvas bounds
+    //if it has, it un-does the move or re-size
+    canvas.on('object:modified', function (e) {
+      if(canvas_mode == "regions")
+      {
+
+      }
+      else if(canvas_mode == "objects")
+      {
+        var obj = e.target;
+         // if object is too big ignore
+        if(obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
+          return;
+        }
+        obj.setCoords();
+        // top-left  corner
+        if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+          obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+          obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+        }
+        // bot-right corner
+        if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+          obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+          obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+        }
+
+          let tempactive = getSelection()
+
+          canvas.getObjects().forEach(function (item){
+            if(typeof item.name !== 'undefined')
+            {
+              labelSet.forEach(function (label){
+                if(label.text === item.name)
+                {
+                  label.visible = true
+                  label.left= item.aCoords.tl.x + (item.getScaledWidth() / 2) - (label.text.length * 3)
+                  label.top= item.aCoords.tl.y + (item.getScaledHeight() / 2) - 5, //3 is offset for text height to center
+                  label.scaleX = 1;
+                  label.scaleY = 1;
+                  label.evented = false
+                  label.selectable = false
+                  label.setCoords()
+                  canvas.bringToFront(label)
+                }
+              })
+            }
+            else if(typeof item.name === 'undefined' && typeof item._objects !== 'undefined')
+            {
+              console.log('multi')
+              item._objects.forEach(function (ob){
+
+                labelSet.forEach(function (label){
+                  if(label.text === ob.name)
+                  {
+                    obj.calcCoords()
+                    label.visible = true
+                    label.left = label.left + (obj.left - obj._stateProperties.left)
+                    label.top = label.top  + (obj.top - obj._stateProperties.top)
+                    label.scaleX = 1;
+                    label.scaleY = 1;
+                    label.evented = false
+                    label.selectable = false
+                    label.setCoords()
+
+                  }
+                })
+              })
+            }
+
+          })
+
+
+          canvas.discardActiveObject()
+
+          setSelection(tempactive)
+
+          updateEditingButtons()
+          labelSet.forEach(function (label){
+            canvas.bringToFront(label)
+          })
+          canvas.requestRenderAll()
+      }
+
+    });
+
+    canvas.on("object:scaling", function (e) {
+      if(canvas_mode == "regions")
+      {
+
+      }
+      else if(canvas_mode == "objects")
+      {
+
+        var obj = e.target,
+            maxWidth = canvas.width,
+            maxHeight = canvas.height,
+            actualWidth = obj.scaleX * obj.width,
+            actualHeight = obj.scaleY * obj.height;
+
+        if(typeof obj._objects === 'undefined')
+        {
+          labelSet.forEach(function (label){
+            if(label.text === obj.name)
+            {
+              label.visible = false
+            }
+          })
+        }
+        else {
+          obj._objects.forEach(function (item){
+            labelSet.forEach(function (label){
+              if(label.text === item.name)
+              {
+                label.visible = false
+              }
+            })
+          })
+        }
+
+
+        if (actualHeight >= .97*maxHeight) {
+            let scalef = (maxHeight / obj.height);
+            obj.set({
+                scaleY: scalef*.97
+            });
+        }
+        if (actualWidth >= .97*maxWidth) {
+            let scalef = (maxWidth / obj.width);
+            obj.set({
+                scaleX: scalef*.97
+            });
+        }
+      }
+
+    });
+
+    canvas.on('object:moving', function (e) {
+      if(canvas_mode == "regions")
+      {
+
+      }
+      else if(canvas_mode == "objects")
+      {
+        var obj = e.target;
+
+        if(typeof obj._objects === 'undefined')
+        {
+          labelSet.forEach(function (label){
+            if(label.text === obj.name)
+            {
+              label.visible = false
+            }
+          })
+        }
+        else {
+          obj._objects.forEach(function (item){
+            labelSet.forEach(function (label){
+              if(label.text === item.name)
+              {
+                label.visible = false
+              }
+            })
+          })
+        }
+
+
+         // if object is too big ignore
+        if(obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
+          return;
+        }
+        obj.setCoords();
+        // top-left  corner
+        if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0){
+          obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
+          obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left);
+        }
+        // bot-right corner
+        if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width){
+          obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
+          obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left);
+        }
+      }
+    });
+
+    function getSelection(){
+      if(typeof canvas.getActiveObject().name !== 'undefined')
+      {
+        return canvas.getActiveObject()
+      }
+      else {
+        return canvas.getActiveObject().toGroup()
+      }
+
+    }
+
+    function setSelection(selection){
+      if(typeof selection.name === 'undefined')
+      {
+
+        selection.toActiveSelection()
+      }
+      else {
+        canvas.setActiveObject(selection).requestRenderAll()
+      }
+    }
+
+    //controls visibility of editing buttons based on canvas status
+    function updateEditingButtons(){
+      if(canvas_mode == "regions")
+      {
+        if(existingRegionSelection)
+        {
+          $('#addToRegion').attr('hidden', false)
+          $('#removeFromRegion').attr('hidden', false)
+          $('#label').attr('hidden', false);
+          $('#color').attr('hidden', false);
+          $('#delete').attr('hidden', false);
+          document.getElementById("toolpaneTitle").innerHTML = currentRegionName
+        }
+        else {
+          $('#addToRegion').attr('hidden', true)
+          $('#removeFromRegion').attr('hidden', true)
+          $('#label').attr('hidden', true);
+          $('#color').attr('hidden', true);
+          $('#delete').attr('hidden', true);
+          document.getElementById("toolpaneTitle").innerHTML = currentRegionName
+        }
+        $('#group').attr('hidden', true);
+        $('#ungroup').attr('hidden', true);
+      }
+      else if(canvas_mode == "objects")
+      {
+        $('#addToRegion').attr('hidden', true)
+        $('#removeFromRegion').attr('hidden', true)
+        $('#color').attr('hidden', true);
+        let numActiveObjects = canvas.getActiveObjects().length;
+        if (numActiveObjects === 1)
+        {
+          $('#label').removeAttr('hidden');
+          $('#delete').removeAttr('hidden');
+          $('#group').attr('hidden', true);
+
+          if(typeof canvas.getActiveObject()._objects !== 'undefined')
+          {
+            $('#ungroup').removeAttr('hidden');
+          }
+          else {
+            $('#ungroup').attr('hidden', true);
+          }
+
+          document.getElementById("toolpaneTitle").innerHTML = canvas.getActiveObject().name
+        }
+        else if (numActiveObjects >= 2)
+        {
+          $('#group').removeAttr('hidden');
+          $('#delete').removeAttr('hidden');
+
+          $('#label').attr('hidden', true);
+          $('#ungroup').attr('hidden', true);
+          document.getElementById("toolpaneTitle").innerHTML = "Selected Items"
+        }
+        else
+        {
+          $('#group').attr('hidden', true);
+          $('#label').attr('hidden', true);
+          $('#delete').attr('hidden', true);
+          $('#ungroup').attr('hidden', true);
+          document.getElementById("toolpaneTitle").innerHTML = ""
+        }
+      }
+    }
+
+    // Functionality of toolbox
+    $("#rectangle").click(function() {
+      if (mode == "RECTANGLE") {
+        mode = "NONE"
+        document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("helper").innerHTML = "Object Drawing mode: NONE"
+
+        canvas.getObjects().forEach(function (item) {
+          if(typeof item.name !== 'undefined' || typeof item.text !== 'undefined')
+          {
+            item.evented = true
+            item.selectable = true
+          }
+          else {
+            item.evented = false
+            item.selectable = false
+          }
+        })
+        canvas.requestRenderAll()
+        canvas.discardActiveObject()
+      }
+      else {
+        mode = "RECTANGLE"
+        document.getElementById("rectangle").className = "btn btn-secondary btn-lg"
+        document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("helper").innerHTML = "Object Drawing mode: RECTANGLE"
+
+        canvas.getObjects().forEach((obj) => {
+          obj.evented = false;
+          obj.selectable = false
+        });
+        canvas.discardActiveObject()
+
+      }
+
+    });
+
+    $("#circle").click(function(){
+      if (mode === "CIRCLE") {
+        mode = "NONE"
+        document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("helper").innerHTML = "Object Drawing mode: NONE"
+
+        canvas.getObjects().forEach(function (item) {
+          if(typeof item.name !== 'undefined' || typeof item.text !== 'undefined')
+          {
+            item.evented = true
+            item.selectable = true
+          }
+          else {
+            item.evented = false
+            item.selectable = false
+          }
+        })
+        canvas.requestRenderAll()
+        canvas.discardActiveObject()
+      }
+      else {
+        mode = "CIRCLE"
+        document.getElementById("circle").className = "btn btn-secondary btn-lg"
+        document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("helper").innerHTML = "Object Drawing mode: CIRCLE"
+
+        canvas.getObjects().forEach((obj) => {
+          obj.evented = false;
+          obj.selectable = false
+        });
+        canvas.discardActiveObject()
+      }
+    });
+
+    $("#rectSelect").click(function(){
+      if(mode === "RECTSELECT") {
+        mode = "NONE"
+        document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+        document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        document.getElementById("helper").innerHTML = "Region Drawing mode: NONE"
+      }
+      else {
+        mode = "RECTSELECT"
+        document.getElementById("rectSelect").className = "btn btn-secondary btn-lg"
+        document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+        document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        document.getElementById("helper").innerHTML = "Region Drawing mode: Rectangle Select"
+      }
+
+      if(existingRegionSelection)
+      {
+        regionDef.forEach(function (cell){
+          if(cell.region === currentRegionName)
+          {
+            cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+          }
+        })
+        canvas.requestRenderAll()
+      }
+
+      currentRegionName = ""
+      existingRegionSelection = false
+      updateEditingButtons()
+    })
+
+    $("#freeSelect").click(function(){
+      if(mode === "FREESELECT") {
+        mode = "NONE"
+        document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+        document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        document.getElementById("helper").innerHTML = "Region Drawing mode: NONE"
+      }
+      else {
+        mode = "FREESELECT"
+        document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+        document.getElementById("freeSelect").className = "btn btn-secondary btn-lg"
+        document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+        document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+        document.getElementById("helper").innerHTML = "Region Drawing mode: Free Select"
+      }
+      if(existingRegionSelection)
+      {
+        regionDef.forEach(function (cell){
+          if(cell.region === currentRegionName)
+          {
+            cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+          }
+        })
+        canvas.requestRenderAll()
+      }
+
+      currentRegionName = ""
+      existingRegionSelection = false
+      updateEditingButtons()
+    })
+
+    function clearRegionSelection(){
+      regionDef.forEach(function (square){
+        if(square.tempSelected)
+        {
+          square.set("fill",defaultGridFill)
+          square.set("region","none")
+          square.set("tempSelected",false)
+        }
+
+      })
+      canvas.requestRenderAll()
+    }
+
+    function defineNewRegion(name, color){
+      if(name)
+      {
+        addNewRegion(name)
+      }
+      else {
+        addNewRegion()
+      }
+
+      if(color)
+      {
+        let temp = color.replace(/[^\d,.]/g, '').split(',')
+        color = temp[0] + "," + temp[1] + "," + temp[2]
+      }
+      else {
+        color = Math.random() * 255+ "," + Math.random() * 255 +"," + Math.random() * 255
+        regionLegend[currentRegionName] = "rgba(" + color +"," + main_alpha +")"
+        updateLegend()
+      }
+
+      existingRegionSelection = true
+
+      regionDef.forEach(function (square){
+        if(square.tempSelected)
+        {
+          square.set("tempSelected",false)
+          if(square.region === currentRegionName)
+          {
+            square.set("fill","rgba(" + color +"," + activeRegion_alpha +")")
+            square.set("rgb", color)
+          }
+        }
+      })
+      canvas.requestRenderAll()
+
+      updateEditingButtons()
+    }
+
+    $("#color").spectrum({
+      showPaletteOnly: true,
+      showPalette: true,
+      hideAfterPaletteSelect: true,
+      palette: [
+        ['#fc80ff'],
+        ['#fa7fc0'],
+        ['#3f80fe'],
+        ['#80feff'],
+        ['#37ff80'],
+        ['#fbff7f'],
+        ['#f98080'],
+        ['#7f80ff']
+      ],
+      change: function(selectedColor) {
+        regionDef.forEach(function (square){
+            if(square.region === currentRegionName)
+            {
+              square.set("fill","rgba(" + selectedColor._r + "," + selectedColor._g +"," + selectedColor._b +"," + activeRegion_alpha +")")
+              square.set("rgb", selectedColor._r + "," + selectedColor._g +"," + selectedColor._b)
+            }
+        })
+        canvas.requestRenderAll()
+
+        regionLegend[currentRegionName] = "rgba(" + selectedColor._r + "," + selectedColor._g +"," + selectedColor._b + "," + main_alpha +")"
+        updateLegend()
+      }
+    });
+
+    $("#addToRegion").click(function(){
+      $("#updateBrushModal").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+      $("#updateBrushModal").modal("show")
+
+    })
+
+    $("#removeFromRegion").click(function(){
+      $("#removeBrushModal").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+      $("#removeBrushModal").modal("show")
+
+    })
+
+    $("#updateRect").click(function(){
+      mode = "MODRECTSELECT"
+      document.getElementById("addToRegion").className = "btn btn-secondary"
+      document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+      $("#updateBrushModal").modal("hide")
+    })
+    $("#updateFree").click(function(){
+      mode = "MODFREESELECT"
+      document.getElementById("addToRegion").className = "btn btn-secondary"
+      document.getElementById("removeFromRegion").className = "btn btn-outline-secondary"
+      $("#updateBrushModal").modal("hide")
+    })
+
+    $("#removeRect").click(function(){
+      mode = "DELRECTSELECT"
+      document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+      document.getElementById("removeFromRegion").className = "btn btn-secondary"
+      $("#removeBrushModal").modal("hide")
+    })
+    $("#removeFree").click(function(){
+      mode = "DELFREESELECT"
+      document.getElementById("addToRegion").className = "btn btn-outline-secondary"
+      document.getElementById("removeFromRegion").className = "btn btn-secondary"
+      $("#removeBrushModal").modal("hide")
+    })
+
+    //deletes the selected drawing and accompanying label
+    $("#delete").click(function(){
+      if(canvas_mode === "objects")
+      {
+        let newLabelSet = []
+        let removedLabels = []
+        canvas.getActiveObjects().forEach((obj) => {
+          labelSet.forEach(function (label){
+            if(label.text === obj.name)
+            {
+              canvas.remove(label)
+              removedLabels.push(label)
+            }
+          })
+          canvas.remove(obj)
+        });
+        labelSet = labelSet.filter(x => !removedLabels.includes(x))
+        canvas.discardActiveObject().requestRenderAll();
+      }
+      else if(canvas_mode === "regions")
+      {
+        regionDef.forEach(function(cell){
+          if(cell.region === currentRegionName)
+          {
+            cell.set("region","none")
+            cell.set("fill",defaultGridFill)
+          }
+        })
+        delete regionLegend[currentRegionName]
+        currentRegionName = ""
+        existingRegionSelection = false
+        updateLegend()
+        canvas.requestRenderAll()
+      }
+
+      updateEditingButtons()
+    });
+
+    //allows for selected shapes to be grouped together
+    $('#group').click(function() {
+      //remove label from individual object before grouping
+      canvas.getActiveObjects().forEach((obj) => {
+        if(typeof obj.text === 'undefined')
+        {
+            removeExistingLabels(obj)
+        }
+
+      });
+
+      let temp = canvas.getActiveObject().toGroup();
+      canvas.requestRenderAll();
+      //temp.originX = 'center'
+      //temp.originY = 'center'
+      temp.hasRotatingPoint = false
+      addNewLabel(temp)
+      setSelection(temp)
+      updateEditingButtons()
+    });
+
+    $('#ungroup').click(function() {
+      let labelName = canvas.getActiveObject().name
+      let newLabelSet = []
+      labelSet.forEach(function (label){
+        if(label.text === labelName)
+        {
+          canvas.remove(label)
+        }
+        else {
+          newLabelSet.push(label)
+        }
+      })
+      labelSet = newLabelSet
+
+      canvas.getActiveObject().toActiveSelection();
+      canvas.getActiveObjects().forEach((obj) => {
+        addNewLabel(obj, obj.name)
+      })
+      canvas.discardActiveObject()
+      updateEditingButtons()
+      canvas.requestRenderAll();
+    })
+
+    $('#legendTable').on('click', 'tr', function (e) {
+      if(canvas_mode === "regions")
+      {
+        let num = e.currentTarget.rowIndex
+
+        existingRegionSelection = true
+        let prevRegionName = currentRegionName
+        currentRegionName = document.getElementById("id"+num).innerHTML
+
+        regionDef.forEach(function (cell){
+          if(cell.region === currentRegionName)
+          {
+            cell.set("fill","rgba(" + cell.rgb + "," + activeRegion_alpha + ")")
+          }
+          else if(cell.region === prevRegionName)
+          {
+            cell.set("fill","rgba(" + cell.rgb + "," + main_alpha + ")")
+          }
+        })
+        updateEditingButtons()
+        canvas.requestRenderAll()
+      }
+
+    });
+
+    function removeExistingLabels(obj){
+      if(typeof obj._objects === 'undefined')
+      {
+        let temp = []
+        labelSet.forEach(function (label){
+          if(label.text === obj.name)
+          {
+            canvas.remove(label)
+          }
+          else {
+            temp.push(label)
+          }
+        })
+        labelSet = temp
+      }
+      else
+      {
+        //need to keep searching
+        obj._objects.forEach(function (child){
+          removeExistingLabels(child)
+        })
+
+      }
+      canvas.requestRenderAll()
+    }
+
+    var labelSet = []
+    function addNewLabel(obj, name){
+      let unnamedCount = labelSet.filter(s => s.text.includes('object')).length + 1
+
+      name = name || "object" + unnamedCount
+      obj.name = name
+
+      //create a text label to display the name
+      //currently, it finds the center of that drawing's bounding box and displays there
+      canvas.discardActiveObject()
+      let text = new fabric.Text(obj.name, {
+        left: obj.aCoords.tl.x + (obj.getScaledWidth() / 2) - (obj.name.length * 3),
+        top: obj.aCoords.tl.y + (obj.getScaledHeight() / 2) - 5, //3 is offset for text height to center
+        fontSize: 22,
+        backgroundColor: 'white',
+        fontFamily: 'Arial',
+        evented: false
+      });
+      canvas.add(text)
+      canvas.bringToFront(text)
+
+      labelSet.push(text)
+
+      canvas.requestRenderAll()
+    }
+
+    function addNewRegion(name){
+      let temp = []
+      regionDef.forEach(function (cell){
+        if(!temp.includes(cell.region) && cell.region.includes('region'))
+        {
+          temp.push(cell.region)
+        }
+      })
+
+      name = name || "region" + (temp.length + 1)
+      currentRegionName = name
+      regionDef.forEach(function (cell){
+        if(cell.tempSelected)
+        {
+          cell.region = name
+        }
+      })
+      canvas.requestRenderAll()
+    }
+
+    function updateLegend(){
+      //clear table
+      $('#legendTable tr').each(function(){
+          $(this).closest("tr").remove();
+      })
+
+      let legendCount = 0;
+
+      if(Object.keys(regionLegend).length > 0)
+      {
+        $('#emptyLegend').attr('hidden', true)
+
+        Object.keys(regionLegend).forEach(function (key){
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td id="id' + legendCount + '">' + key + '</td>';
+            cols += '<td style="background-color:' + regionLegend[key] + '">    </td>';
+
+            newRow.append(cols);
+            $("#legendTable").append(newRow);
+            legendCount++;
+        })
+      }
+      else {
+        $('#emptyLegend').attr('hidden', false)
+      }
+    }
+
+    //creates label and groups with associated object
+    $('#label').click(function() {
+      if(canvas_mode === "objects")
+      {
+        var obj = canvas.getActiveObject();
+        placeholderText = obj.name
+
+        //prompt user for name
+        let response = window.prompt("Enter name of object",placeholderText);
+        let oldName = obj.name
+        obj.name = response
+        //if they cancel the action, remove the move recently drawn line
+        if(response != null)
+        {
+          let currLabel = ""
+          //update the selected item with the new name
+          labelSet.forEach(function (label){
+            console.log(label)
+            if(label.text === oldName)
+            {
+              currLabel = label
+            }
+          })
+          fabric.Object.prototype.objectCaching = false;
+          currLabel.text = response;
+          currLabel.evented = false;
+          currLabel.selectable = false
+          canvas.bringToFront(currLabel)
+        }
+        canvas.discardActiveObject()
+        setSelection(obj)
+
+      }
+      else if(canvas_mode === "regions")
+      {
+        let response = window.prompt("Enter name of region",currentRegionName);
+        if(response != null)
+        {
+          regionDef.forEach(function (cell){
+            if(cell.region === currentRegionName)
+            {
+              cell.region = response
+            }
+          })
+          regionLegend[response] = regionLegend[currentRegionName]
+          delete regionLegend[currentRegionName]
+          currentRegionName = response
+
+        }
+      }
+      updateEditingButtons()
+      updateLegend()
+
+    })
+
+    var canvas_mode = "objects"
+    $("#objectEdit").click(async function(){
+      canvas.discardActiveObject()
+      document.getElementById("regionEdit").className = "btn btn-outline-secondary btn-lg";
+      document.getElementById("objectEdit").className = "btn btn-secondary btn-lg";
+      document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+      $('#objectToolbox').attr('hidden', false);
+      $('#regionToolbox').attr('hidden', true);
+      canvas_mode = "objects"
+      mode = "NONE"
+      this.blur()
+
+      canvas.getObjects().forEach(function (item) {
+        if(typeof item.shape !== 'undefined' || typeof item._objects !== 'undefined')
+        {
+          item.evented = true
+          item.selectable = true
+          item.set("fill", obj_main_fill)
+          item.set("stroke", obj_main_stroke)
+          item.bringToFront()
+        }
+        else {
+          item.evented = false
+          item.selectable = false
+        }
+        if(typeof item.region !== 'undefined')
+        {
+          if(item.region === "none")
+          {
+            item.set("fill","rgba(" + item.rgb + ",0)")
+          }
+          else {
+            item.set("fill","rgba(" + item.rgb + "," + main_alpha + ")")
+          }
+
+        }
+      })
+
+      labelSet.forEach(function(label){
+        label.bringToFront()
+        label.evented = false
+        label.selectable = false
+      })
+      canvas.requestRenderAll()
+    });
+
+    var regionDef = []
+    var regionLegend = {}
+    $("#regionEdit").click(async function(){
+      canvas.discardActiveObject()
+      labelSet.forEach(function(label){
+        label.bringToFront()
+      })
+
+      document.getElementById("regionEdit").className = "btn btn-secondary btn-lg";
+      document.getElementById("objectEdit").className = "btn btn-outline-secondary btn-lg";
+      document.getElementById("rectSelect").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("freeSelect").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("rectangle").className = "btn btn-outline-secondary btn-lg"
+      document.getElementById("circle").className = "btn btn-outline-secondary btn-lg"
+      $('#objectToolbox').attr('hidden', true);
+      $('#regionToolbox').attr('hidden', false);
+      existingRegionSelection = false
+      currentRegionName = ""
+      canvas_mode = "regions"
+      mode = "NONE"
+      this.blur()
+
+      canvas.getObjects().forEach(function (item){
+        item.evented = false
+        item.selectable = false
+        if(typeof item.region !== 'undefined')
+        {
+          item.sendToBack()
+          if(item.region === "none")
+          {
+            item.set("fill","rgba(" + item.rgb + ",0)")
+          }
+          else {
+            item.set("fill","rgba(" + item.rgb + "," + main_alpha + ")")
+          }
+        }
+        else if(typeof item.shape !== 'undefined')
+        {
+          item.set("fill", obj_light_fill)
+          item.set("stroke", obj_light_stroke)
+        }
+      })
+      canvas.requestRenderAll()
+
+      updateEditingButtons()
+    });
+
+    function setRegionGridValue(x,y,val){
+      regionDef[x*gridX + y] = val
+    }
+
+    function getRegionGridValue(x,y){
+      return regionDef[x*gridX + y]
+    }
+
+  </script>
+
+</body>
+</html>

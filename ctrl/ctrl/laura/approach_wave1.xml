@@ -1,0 +1,2180 @@
+<?xml version="1.0" ?>
+<interaction__self>
+   <state id="0">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="ON"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="1">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="74"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="314"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="2">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="311"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="3">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="308"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="4">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="300"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="5">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="295"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="6">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="289"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="7">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="283"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="8">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="278"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="9">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="270"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="10">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="71"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="265"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="11">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="260"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="12">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="251"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="13">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="247"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="14">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="243"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="15">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="68"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="234"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="16">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="67"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="230"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="17">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="65"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="226"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="18">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="64"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="216"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="19">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="63"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="212"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="20">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="62"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="206"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="21">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="62"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="203"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="22">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="61"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="199"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="23">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="60"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="192"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="24">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="59"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="188"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="25">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="58"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="184"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="26">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="179"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="27">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="175"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="28">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="168"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="29">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="163"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="30">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="55"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="159"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="31">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="54"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="153"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="32">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="54"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="143"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="5"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="33">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="53"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="140"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="34">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="52"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="130"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="35">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="122"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="36">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="116"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="37">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="112"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="21"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="38">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="108"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="26"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="39">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="57"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="99"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="31"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="40">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="58"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="91"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="36"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="41">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="60"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="87"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="44"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="42">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="83"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="51"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="43">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="78"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="56"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="44">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="74"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="62"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="45">
+      <behaviors>
+         <behavior cat="movement_y">
+            <value val="69"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="67"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="46">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="64"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="66"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="47">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="66"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="64"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="48">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="68"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="62"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="49">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="70"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="58"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="50">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="72"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="56"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="51">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="74"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="55"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="52">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="77"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="52"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="53">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="80"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="50"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="54">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="84"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="49"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="55">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="87"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="48"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="56">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="91"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="48"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="57">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="94"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="47"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="58">
+      <behaviors>
+         <behavior cat="movement_x">
+            <value val="96"/>
+         </behavior>
+         <behavior cat="movement_y">
+            <value val="46"/>
+         </behavior>
+         <behavior cat="movement_angle">
+            <value val="82"/>
+         </behavior>
+         <behavior cat="movement_time">
+            <value val="0.1"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="59">
+      <behaviors>
+         <behavior cat="actions">
+            <value val="wave"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="60">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="OFF"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <init id="0"/>
+   <transition source_id="0" target_id="1">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="77"/>
+         </label>
+         <label label="ypos">
+            <val val="318"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="1" target_id="2">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="314"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="3">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="311"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="3" target_id="4">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="308"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="4" target_id="5">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="False"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="300"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="5" target_id="6">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="295"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="6" target_id="7">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="289"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="7" target_id="8">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="283"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="8" target_id="9">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="278"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="9" target_id="10">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="270"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="10" target_id="11">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="False"/>
+         </label>
+         <label label="h_ypos">
+            <val val="False"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="71"/>
+         </label>
+         <label label="ypos">
+            <val val="265"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="11" target_id="12">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="71"/>
+         </label>
+         <label label="ypos">
+            <val val="260"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="12" target_id="13">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="71"/>
+         </label>
+         <label label="ypos">
+            <val val="251"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="13" target_id="14">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="71"/>
+         </label>
+         <label label="ypos">
+            <val val="247"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="14" target_id="15">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="71"/>
+         </label>
+         <label label="ypos">
+            <val val="243"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="15" target_id="16">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="68"/>
+         </label>
+         <label label="ypos">
+            <val val="234"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="16" target_id="17">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="67"/>
+         </label>
+         <label label="ypos">
+            <val val="230"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="17" target_id="18">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="65"/>
+         </label>
+         <label label="ypos">
+            <val val="226"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="18" target_id="19">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="64"/>
+         </label>
+         <label label="ypos">
+            <val val="216"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="19" target_id="20">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="63"/>
+         </label>
+         <label label="ypos">
+            <val val="212"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="20" target_id="21">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="62"/>
+         </label>
+         <label label="ypos">
+            <val val="206"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="21" target_id="22">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="62"/>
+         </label>
+         <label label="ypos">
+            <val val="203"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="22" target_id="23">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="61"/>
+         </label>
+         <label label="ypos">
+            <val val="199"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="23" target_id="24">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="192"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="24" target_id="25">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="59"/>
+         </label>
+         <label label="ypos">
+            <val val="188"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="25" target_id="26">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="184"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="26" target_id="27">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="179"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="27" target_id="28">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="175"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="28" target_id="29">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="168"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="29" target_id="30">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="False"/>
+         </label>
+         <label label="h_ypos">
+            <val val="False"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="163"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="30" target_id="31">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="55"/>
+         </label>
+         <label label="ypos">
+            <val val="159"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="31" target_id="32">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="352"/>
+         </label>
+         <label label="xpos">
+            <val val="54"/>
+         </label>
+         <label label="ypos">
+            <val val="153"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="32" target_id="33">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="5"/>
+         </label>
+         <label label="xpos">
+            <val val="54"/>
+         </label>
+         <label label="ypos">
+            <val val="143"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="33" target_id="34">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="5"/>
+         </label>
+         <label label="xpos">
+            <val val="53"/>
+         </label>
+         <label label="ypos">
+            <val val="140"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="34" target_id="35">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="5"/>
+         </label>
+         <label label="xpos">
+            <val val="52"/>
+         </label>
+         <label label="ypos">
+            <val val="130"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="35" target_id="36">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="5"/>
+         </label>
+         <label label="xpos">
+            <val val="52"/>
+         </label>
+         <label label="ypos">
+            <val val="122"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="36" target_id="37">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="5"/>
+         </label>
+         <label label="xpos">
+            <val val="52"/>
+         </label>
+         <label label="ypos">
+            <val val="116"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="37" target_id="38">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="21"/>
+         </label>
+         <label label="xpos">
+            <val val="52"/>
+         </label>
+         <label label="ypos">
+            <val val="112"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="38" target_id="39">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="26"/>
+         </label>
+         <label label="xpos">
+            <val val="52"/>
+         </label>
+         <label label="ypos">
+            <val val="108"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="39" target_id="40">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="31"/>
+         </label>
+         <label label="xpos">
+            <val val="57"/>
+         </label>
+         <label label="ypos">
+            <val val="99"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="40" target_id="41">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="36"/>
+         </label>
+         <label label="xpos">
+            <val val="58"/>
+         </label>
+         <label label="ypos">
+            <val val="91"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="41" target_id="42">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="44"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="87"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="42" target_id="43">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="51"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="83"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="43" target_id="44">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="56"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="78"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="44" target_id="45">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="62"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="74"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="45" target_id="46">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="60"/>
+         </label>
+         <label label="ypos">
+            <val val="69"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="46" target_id="47">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="64"/>
+         </label>
+         <label label="ypos">
+            <val val="66"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="47" target_id="48">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="False"/>
+         </label>
+         <label label="h_ypos">
+            <val val="False"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="66"/>
+         </label>
+         <label label="ypos">
+            <val val="64"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="48" target_id="49">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="68"/>
+         </label>
+         <label label="ypos">
+            <val val="62"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="49" target_id="50">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="70"/>
+         </label>
+         <label label="ypos">
+            <val val="58"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="50" target_id="51">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="72"/>
+         </label>
+         <label label="ypos">
+            <val val="56"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="51" target_id="52">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="74"/>
+         </label>
+         <label label="ypos">
+            <val val="55"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="52" target_id="53">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="77"/>
+         </label>
+         <label label="ypos">
+            <val val="52"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="53" target_id="54">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="80"/>
+         </label>
+         <label label="ypos">
+            <val val="50"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="54" target_id="55">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="84"/>
+         </label>
+         <label label="ypos">
+            <val val="49"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="55" target_id="56">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="87"/>
+         </label>
+         <label label="ypos">
+            <val val="48"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="56" target_id="57">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="91"/>
+         </label>
+         <label label="ypos">
+            <val val="48"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="57" target_id="58">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="67"/>
+         </label>
+         <label label="xpos">
+            <val val="94"/>
+         </label>
+         <label label="ypos">
+            <val val="47"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="58" target_id="59">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="42"/>
+         </label>
+         <label label="rotation">
+            <val val="82"/>
+         </label>
+         <label label="xpos">
+            <val val="96"/>
+         </label>
+         <label label="ypos">
+            <val val="46"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="59" target_id="60">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="h_xpos">
+            <val val="171"/>
+         </label>
+         <label label="h_ypos">
+            <val val="41"/>
+         </label>
+         <label label="rotation">
+            <val val="82"/>
+         </label>
+         <label label="xpos">
+            <val val="96"/>
+         </label>
+         <label label="ypos">
+            <val val="46"/>
+         </label>
+      </env_state>
+   </transition>
+</interaction__self>

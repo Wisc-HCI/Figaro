@@ -1,0 +1,427 @@
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/fabric.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="col" style="padding:0">
+  	    <h1 class="text-center">CREATE</h1>
+  	  </div>
+  	</div>
+    <div class="row">
+      <div class="col">
+        <p>Each scene contributes to the final program. Create multiple scenes to create a more complex program.</p>
+      </div>
+    </div>
+
+    <div class="row" style="padding-left:20%; padding-right:20%">
+      <div class="col-4">
+        <button id="beginscene" class="btn btn-outline-dark btn-lg" type="button">Begin a Scene</button>
+      </div>
+      <div class="col-4">
+        <button id="customcats" class="btn btn-outline-dark btn-lg" type="button">Edit Speech Categories</button>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-2">
+        <button id="done" class="btn btn-outline-dark btn-lg" type="button">Done</button>
+      </div>
+    </div>
+
+    <div class="row" style="padding-left:20%; padding-right:20%; padding-top: 20px;">
+      <div class="container"style="height:350px;overflow-y:auto">
+        <p id="loadingScenes">Loading current scenes.....</p>
+        <p id="noScenesYet" hidden>No scenes have been created yet.</p>
+        <table id="sceneList" class="table  table-hover" hidden>
+          <thead>
+              <tr>
+                  <td>ID</td>
+                  <td>Scene Name</td>
+                  <td>Duration</td>
+                  <td>Overview</td>
+              </tr>
+          </thead>
+          <tbody id="TableItems">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal to select existing tag -->
+  <div id="sceneModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="currentSceneName"></h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body" style="padding:10px">
+          <div>
+            <p id="sceneload">loading...</p>
+            <canvas id="canvas" width="480" height="360" style = 'border: solid black 0.5px;'></canvas>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="trigger_delete_scene" type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#confirmDeleteModal">Delete</button>
+          <span>&nbsp;&nbsp;&nbsp;</span>
+          <button id="done_scene" type="button" class="btn btn-outline-dark btn-lg" data-dismiss="modal">Done</button>
+        </div>
+      </div>
+      </div>
+  </div>
+
+  <!-- Modal to confirm delete scene -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Scene</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to permanently delete this scene?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark btn-lg" data-dismiss="modal">Cancel</button>
+          <button id="delete_scene" type="button" class="btn btn-outline-dark btn-lg">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+
+  $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          console.log("received nav message")
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            console.log("navigating")
+            window.location.href = msg.response
+          }
+      });
+
+      socket.on('all_scenes_summary', function(msg) {
+          console.log("received scene summary message")
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            //clear table
+            $('#sceneList tr').each(function(){
+                $(this).remove();
+            })
+
+            //add new scenes
+            if(msg.response.length > 0)
+            {
+              //load data to table
+              var counter = 0;
+              msg.response.forEach(function(scene){
+                let newRow = $("<tr class=\"table-row\" id=\"row" + counter + "\">");
+                let cols = "";
+                cols += '<td id=\"id' + counter + '\">' + scene[0] + '</td>';
+                cols += '<td id=\"name' + counter + '\">' + scene[1] + '</td>';
+                cols += '<td id=\"duration' + counter + '\">' + scene[2] + ' seconds</td>';
+                cols += '<td id=\"overview' + counter + '\">' + scene[3] + '</td>';
+
+                newRow.append(cols);
+                $("table.table-hover").append(newRow);
+                counter++;
+              });
+
+              //change visibility
+              $('#sceneList').removeAttr('hidden');
+              $('#noScenesYet').attr('hidden', true);
+              $('#loadingScenes').attr('hidden', true);
+            }
+            else {
+              //change visibility
+              $('#noScenesYet').removeAttr('hidden');
+              $('#sceneList').attr('hidden', true);
+              $('#loadingScenes').attr('hidden', true);
+            }
+
+          }
+      });
+
+      var canvas = new fabric.Canvas('canvas');
+      var xScale = 480
+      var yScale = 360
+      var majorRadius = 20
+      var majorAlpha = 1
+      var minorRadius = 10
+      var minorAlpha = 0.6
+      var robotColor = '60,125,60,'
+      var humanColor = '0, 120, 255,'
+      var pathItems = []
+      socket.on('individual_scene', function(msg) {
+        console.log(msg)
+          if (msg.layout != 'blank'){
+            canvas.clear()
+            canvas.loadFromDatalessJSON(msg.layout)
+            canvas.setDimensions({ width: xScale, height: yScale });
+            canvas.setZoom(0.66)
+
+            canvas.getObjects().forEach((obj) => {
+              obj.selectable = false;
+              obj.evented = false;
+              if(typeof obj.region !== 'undefined')
+              {
+                obj.set('stroke', 'rgba(255,255,255,0)')
+                canvas.sendToBack(obj)
+              }
+              else {
+                canvas.bringToFront(obj)
+                obj.visible = true
+              }
+            });
+            canvas.requestRenderAll()
+          }
+          else {
+            canvas.setBackgroundColor('rgba(255,255,255,0.5)', canvas.renderAll.bind(canvas));
+          }
+
+        let front = []
+        let max = msg.human_path.length
+        for(let n=0; n<max; n++)
+        {
+          console.log(msg.human_path[n])
+          let x = Math.round(msg.human_path[n][0] * xScale /0.66)
+          let y = Math.round(msg.human_path[n][1] * yScale /0.66)
+          let r = minorRadius
+          let alpha = minorAlpha
+          if(Math.round(msg.human_path[n][2] !== ""))
+          {
+            r = majorRadius
+            alpha = majorAlpha
+          }
+          let dot = new fabric.Circle({
+          	radius: r,
+          	fill: 'rgba(' + humanColor + alpha + ')',
+            left: x ,
+            top:  y ,
+            selectable: false,
+            originX: 'center',
+            originY: 'center',
+          });
+          canvas.add(dot);
+          canvas.bringToFront(dot)
+          pathItems.push(dot)
+          if(Math.round(msg.human_path[n][2] !== ""))
+          {
+            dot.setGradient('fill', {
+              type: 'radial',
+              r1: majorRadius * 0.7,
+              r2: majorRadius,
+              x1: majorRadius,
+              y1: majorRadius,
+              x2: majorRadius,
+              y2: majorRadius,
+              colorStops: {
+                  0: 'rgba(' + humanColor + alpha + ')',
+                  1: 'rgba(0, 0, 0, 0.8)'
+              }
+            });
+            dot.on('mousedown', function(e){
+              alert(msg.human_path[n][2])
+            })
+            front.push(dot)
+          }
+
+          if(n > 0){
+            //draw the line to connect them
+            let x2 = Math.round(msg.human_path[n-1][0] * xScale /0.66)
+            let y2 = Math.round(msg.human_path[n-1][1] * yScale /0.66)
+            let l = new fabric.Line([x, y, x2, y2], {
+              fill: 'rgba(' + humanColor + minorAlpha + ')',
+              stroke: 'rgba(' + humanColor + minorAlpha + ')',
+              strokeWidth: 1,
+              strokeDashArray: [10, 5],
+              selectable: false,
+              evented: false,
+            });
+            canvas.add(l)
+            pathItems.push(l)
+          }
+        }
+
+        max = msg.robot_path.length
+        for(let n=0; n<max; n++)
+        {
+          let x = Math.round(msg.robot_path[n][0] * xScale /0.66)
+          let y = Math.round(msg.robot_path[n][1] * yScale /0.66)
+          let r = minorRadius
+          let alpha = minorAlpha
+          if(Math.round(msg.robot_path[n][2] !== ""))
+          {
+            console.log(msg.robot_path[n][2])
+            r = majorRadius
+            alpha = majorAlpha
+          }
+          let dot = new fabric.Circle({
+          	radius: r,
+          	fill: 'rgba(' + robotColor + alpha + ')',
+            left: x ,
+            top:  y ,
+            selectable: false,
+            originX: 'center',
+            originY: 'center',
+          });
+          canvas.add(dot);
+          canvas.bringToFront(dot)
+          pathItems.push(dot)
+          if(Math.round(msg.robot_path[n][2] !== ""))
+          {
+            dot.setGradient('fill', {
+              type: 'radial',
+              r1: majorRadius * 0.7,
+              r2: majorRadius,
+              x1: majorRadius,
+              y1: majorRadius,
+              x2: majorRadius,
+              y2: majorRadius,
+              colorStops: {
+                  0: 'rgba(' + robotColor + alpha + ')',
+                  1: 'rgba(50,50,50, 1)'
+              }
+            });
+            dot.on('mousedown', function(e){
+              alert(msg.robot_path[n][2])
+            })
+            front.push(dot)
+          }
+
+          if(n > 0){
+            //draw the line to connect them
+            let x2 = Math.round(msg.robot_path[n-1][0] * xScale /0.66)
+            let y2 = Math.round(msg.robot_path[n-1][1] * yScale /0.66)
+            let l = new fabric.Line([x, y, x2, y2], {
+              fill: 'rgba(' + robotColor + minorAlpha + ')',
+              stroke: 'rgba(' + robotColor + minorAlpha + ')',
+              strokeWidth: 1,
+              strokeDashArray: [10, 5],
+              selectable: false,
+              evented: false,
+            })
+            canvas.add(l);
+            pathItems.push(l)
+          }
+        }
+
+        front.forEach(function(spot) {
+          spot.bringToFront()
+        } )
+
+        $('#sceneload').attr('hidden', true);
+        canvas.requestRenderAll()
+        console.log(canvas.width + " and " + canvas.height)
+
+      });
+
+      //send request for scene summaries
+      let response = socket.emit('tablet_request_scene', {request:'all'})
+
+      //button actions
+      $("#beginscene").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'begin_scene', sender: 'tablet'});
+      });
+
+      $("#customcats").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'begin_editspeechcats', sender: 'tablet'});
+      });
+
+      $("#done").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'end_sketch', sender: 'tablet'});
+      });
+
+      $("#delete_scene").click(async function(){
+        console.log("will delete scene")
+        //close modals
+        $("#sceneModal").modal("hide")
+        $("#confirmDeleteModal").modal("hide")
+
+        //remove from list
+        console.log(parseInt(sceneID))
+        let response = socket.emit('tablet_request_delete_scene', {request: sceneID.toString(), sender: 'tablet'})
+
+      });
+
+      $("#done_scene").click(async function(){
+        canvas.clear()
+      });
+
+      var selectedRowIndex = -1
+      var sceneID = -1
+      $('#TableItems').on('click', 'tr', function (e) {
+          selectedRowIndex = e.currentTarget.rowIndex
+          //console.log(e)
+          console.log(document.getElementById("id"+selectedRowIndex))
+          sceneID = document.getElementById("id"+selectedRowIndex).innerHTML
+          //console.log(document.getElementById("name"+num).innerHTML)
+          //console.log(document.getElementById("duration"+num).innerHTML)
+          console.log(sceneID)
+          let response = socket.emit('tablet_request_scene', {request:parseInt(sceneID)})
+
+          document.getElementById("currentSceneName").innerHTML = document.getElementById("name"+selectedRowIndex).innerHTML
+          $('#sceneload').removeAttr('hidden');
+
+          pathItems.forEach((obj)=>{
+            canvas.remove(obj)
+          })
+          canvas.renderAll()
+          console.log(canvas.getObjects())
+
+          $("#sceneModal").modal({
+            backdrop: 'static',
+            keyboard: false
+          });
+          $("#sceneModal").modal("show")
+          //actually, need to go to sceneview and then ping ctrl for the specific scene info...
+      });
+
+
+
+  });
+
+
+</script>
+
+</body>
+</html>

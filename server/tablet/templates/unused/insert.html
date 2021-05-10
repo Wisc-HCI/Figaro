@@ -1,0 +1,73 @@
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+
+</head>
+<body>
+
+  <div class="container-fluid">
+  	<div class="row" style="background-color:turquoise;">
+  	  <div class="col">
+  	    <h1 class="text-center" style="color:white;">INSERT</h1>
+  	  </div>
+  	</div>
+    <div class="row">
+      <div class="col">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend quam ac risus ornare, a pulvinar diam placerat. Integer enim tortor, gravida vel est et, eleifend suscipit ante. Proin et scelerisque augue. Vestibulum ullamcorper, sem et feugiat luctus, magna magna efficitur neque, vel maximus dui odio a elit. Quisque in justo sed ante vehicula sodales sit amet nec mauris. Maecenas efficitur nulla id nisi posuere, sit amet pharetra diam euismod.</p>
+      </div>
+    </div>
+    <div class="row">
+  	  <div class="col-10">
+      </div>
+      <div class="col-2">
+        <button id="cancel" class="btn btn-outline-dark" type="button">Cancel</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+      </div>
+    </div>
+  </div>
+
+<script>
+
+  $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port() + '/nav');
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            window.location.href = msg.response
+          }
+      });
+
+      $("#cancel").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'cancel_insert', sender: 'tablet'});
+      });
+
+  });
+
+</script>
+</body>
+</html>

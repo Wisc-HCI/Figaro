@@ -1,0 +1,23 @@
+*.pyc
+*.DS_Store
+*.csv
+*.pylintrc
+
+# build and install folders
+build
+install
+log
+.vscode
+
+# automatically generated files
+ctrl/ctrl/after.pdf
+ctrl/ctrl/before.pdf
+ctrl/ctrl/d3js/links.json
+audio/audio/audio_in/audio_bin/output.wav
+
+# private google cloud keys
+audio/audio/actions_key.json
+audio/audio/speech_key.json
+figure_gestures/figure_gestures/pubsub_key.json
+ctrl/ctrl/pubsub_key.json
+ctrl/ctrl/verification-of-hri-firebase-adminsdk-y2m4o-a7e966cf63.json

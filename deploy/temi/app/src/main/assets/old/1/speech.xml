@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<speech>
+   <speech_cat id="go away">
+      <phrase text="you can leave now"/>
+   </speech_cat>
+   <speech_cat id="RequestCategory">
+      <phrase text="new category"/>
+      <phrase text="show me a new category"/>
+      <phrase text="can I have a new category now"/>
+   </speech_cat>
+</speech>

@@ -1,0 +1,14 @@
+[
+	{"modality":"xpos", "behavior_or_state": "state", "type": "nominal", "array": false},
+	{"modality":"ypos", "behavior_or_state": "state", "type": "nominal", "array": false},
+	{"modality":"rotation","behavior_or_state": "state", "type": "nominal", "array": false},
+	{"modality":"sys", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"actions", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"movement_x", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"movement_y", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"movement_angle", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"movement_time", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+
+	{"modality":"h_xpos", "behavior_or_state": "state", "type": "nominal", "array": false},
+	{"modality":"h_ypos", "behavior_or_state": "state", "type": "nominal", "array": false}
+]

@@ -1,0 +1,3 @@
+[
+	[{"wake":"ON"}, {"":"self","position":["hallway"],"close_to_human":false}, {"speech": "greet"}, {"":"self","position":["hallway"],"close_to_human":false}, {"wake":"OFF"}],
+]

@@ -1,0 +1,4 @@
+[
+	[{"":"self"}, {"speech": "greet", "position":["hallway"],"close_to_human":false}],
+	[{"":"self"}, {"movement": true, "position":["bedroom"],"close_to_human":false}]
+]

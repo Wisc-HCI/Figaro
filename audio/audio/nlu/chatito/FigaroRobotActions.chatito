@@ -1,0 +1,89 @@
+import ./BaseFigaroEntities.chatito
+
+%[grab]('training':'1000')
+    ~[syn_grab] ~[article?] @[item]
+    ~[syn_grab] @[item_ambig]
+    ~[syn_grab] ~[article?] @[item] from @[subject]
+    ~[syn_grab] @[item_ambig] from @[subject]
+    ~[syn_grab] ~[article?] @[item] from @[location]
+    ~[syn_grab] @[item_ambig] from @[location]
+    ~[syn_grab] ~[article?] @[item] from @[location_ambig]
+    ~[syn_grab] @[item_ambig] from @[location_ambig]
+
+~[syn_grab]
+    grab
+    pick up
+    take
+
+%[release]('training':'1000')
+    ~[syn_release] ~[article?] @[item]
+    ~[syn_release] @[item_ambig]
+    ~[syn_release] ~[article?] @[item] on @[location]
+    ~[syn_release] ~[article?] @[item] in @[location]
+    ~[syn_release] @[item_ambig] on @[location]
+    ~[syn_release] @[item_ambig] in @[location]
+    ~[syn_release] ~[article?] @[item] @[location_ambig]
+    ~[syn_release] @[item_ambig] @[location_ambig]
+
+~[syn_release]
+    release
+    put down
+    place
+
+%[gesture]('training':'1000')
+    ~[gesture_types] to @[item]
+    ~[gesture_types] to @[item_ambig]
+    ~[gesture_types] at @[item]
+    ~[gesture_types] at @[item_ambig]
+    ~[gesture_types] to @[location]
+    ~[gesture_types] to @[location_ambig]
+    ~[gesture_types] at @[location]
+    ~[gesture_types] at @[location_ambig]
+    ~[gesture_types] to @[subject]
+    ~[gesture_types] at @[subject]
+
+~[gesture_types]
+    gesture
+    point
+
+%[gaze]('training':'1000')
+    ~[gaze_types] at @[item]
+    ~[gaze_types] at @[item_ambig]
+    ~[gaze_types] at @[location]
+    ~[gaze_types] at @[location_ambig]
+    ~[gaze_types] at @[subject]
+
+~[gaze_types]
+    look
+    gaze
+
+~[article]
+    the
+    a
+    an
+
+%[movement]('training':'1000')
+    ~[syn_move] ~[article] @[location]
+    ~[syn_move] @[location_ambig]
+    ~[syn_move] @[subject]
+
+~[syn_move]
+    move to
+    moves to
+    moving to
+    moved to
+    is moving to
+    move over to
+    moves over to
+    moving over to
+    moved over to
+    is moving over to
+    goes toward
+    went toward
+    going toward
+    is goind toward
+    approach
+    approaches
+    approaching
+    approached
+    is approaching

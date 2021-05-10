@@ -1,0 +1,18 @@
+[
+	{"modality":"position", "behavior_or_state": "state", "type": "nominal", "array": true},
+	{"modality":"speech", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"sys", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"actions", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"movement", "behavior_or_state": "behavior", "type": "nominal", "array": true},
+	{"modality":"close_to_human", "behavior_or_state": "state", "type": "boolean", "array": false},
+	{"modality":"wait", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"point", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"tilt", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+
+	{"modality":"h1_position", "behavior_or_state": "state", "type": "nominal", "array": true},
+	{"modality":"h1_near_rob", "behavior_or_state": "state", "type": "boolean", "array": false},
+	{"modality":"h1_sys", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"h1_speech", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"h1_actions", "behavior_or_state": "behavior", "type": "nominal", "array": false},
+	{"modality":"h1_movement", "behavior_or_state": "state", "type": "nominal", "array": true}
+]

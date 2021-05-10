@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<speech>
+   <speech_cat id="Announcement">
+      <phrase text="let me know if there's anything you would like to know about the art"/>
+   </speech_cat>
+   <speech_cat id="Question"/>
+   <speech_cat id="Information">
+      <phrase text="American Gothic was painted by Grant Wood in 1930 it is the painting that made him famous"/>
+   </speech_cat>
+   <speech_cat id="location">
+      <phrase text=""/>
+      <phrase text="it is right over there"/>
+   </speech_cat>
+   <speech_cat id="Location question">
+      <phrase text="where can I find the painting Circuit City"/>
+   </speech_cat>
+   <speech_cat id="Art question">
+      <phrase text="please tell me everything about Mister mittens"/>
+   </speech_cat>
+   <speech_cat id="Mr mittens location">
+      <phrase text="mr. mittens is on the South Wall over there"/>
+   </speech_cat>
+   <speech_cat id="Mr mittens question">
+      <phrase text="where can I find mr. mittens"/>
+   </speech_cat>
+</speech>

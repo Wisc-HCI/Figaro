@@ -1,0 +1,37 @@
+@[item]
+    groceries
+
+@[item_ambig]
+    it
+    them
+
+@[location]
+    counter
+    refridgerator
+    hallway
+    common area
+    room
+    common area
+    door
+    gate
+    terminal
+    front
+    back
+    table
+    kitchen
+    doorstep
+    entrance
+
+@[location_ambig]
+    there
+    over there
+
+@[subject]
+    they
+    them
+    the human
+    the person
+    the robot
+    him
+    her
+    it

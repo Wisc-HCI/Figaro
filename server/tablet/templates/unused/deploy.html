@@ -1,0 +1,73 @@
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="col" style="padding:0">
+  	    <h1 class="text-center">DEPLOY</h1>
+  	  </div>
+  	</div>
+    <div class="row">
+      <div class="col">
+        <p>Sending interaction files to the robot. Say "Hey robot, begin!" to start the interaction.</p>
+      </div>
+    </div>
+    <div class="row">
+  	  <div class="col-8">
+      </div>
+      <div class="col-2">
+        <button id="cancel" class="btn btn-outline-dark btn-lg" type="button">Okay</button>
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
+
+<script>
+
+  $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            window.location.href = msg.response
+          }
+      });
+
+      $("#cancel").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'okay_deploy', sender: 'tablet'});
+      });
+
+  });
+
+</script>
+</body>
+</html>

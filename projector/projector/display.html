@@ -1,0 +1,84 @@
+<html>
+<head>
+
+  <!--favicon location
+  <link rel="shortcut icon" href="favicon.ico">-->
+
+  <!--javascript library references-->
+  <script src="../../server/tablet/static/jquery.min.js"></script>
+  <script src="../../server/tablet/static/fabric.min.js"></script>
+  <script src="../../server/tablet/static/bootstrap.min.js"></script>
+
+  <!--javascript custom files-->
+  <script src="../../server/tablet/static/serverFunctions.js"></script>
+
+  <!--socket io library-->
+  <script src="../../server/tablet/static/socket.io.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="../../server/tablet/static/bootstrap.min.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <canvas id="canvas" width="720" height="540"></canvas>
+    </div>
+
+
+  <script>
+    var canvas = new fabric.StaticCanvas('canvas',{renderOnAddRemove:false});
+
+    $(document).ready(function(){
+      var socket = io.connect('http://10.134.71.211:' + get_controller_node_port());
+
+      socket.emit('get_current_layout', {sender:'projector'})
+      socket.on('layout_stream', function(msg) {
+        console.log(msg)
+        let xScale = 1
+        let yScale = 1
+        if(typeof msg.projectorX !== 'undefined')
+        {
+          console.log(msg.projectorX + " by " + msg.projectorY)
+          xScale = msg.projectorX / 720
+          yScale = msg.projectorY / 540
+          console.log(xScale + " and " + yScale)
+          canvas.setDimensions({ width: msg.projectorX, height: msg.projectorY });
+        }
+
+        if (msg.layout != 'blank') {
+          canvas.clear()
+          canvas.loadFromDatalessJSON(msg.layout)
+
+          canvas.getObjects().forEach((obj) => {
+            obj.selectable = false;
+            obj.evented = false;
+            obj.scaleX = obj.scaleX * xScale;
+            obj.left = obj.left * xScale
+            obj.scaleY = obj.scaleY * yScale;
+            obj.top = obj.top * yScale
+
+            if(typeof obj.region !== 'undefined')
+            {
+              obj.set('stroke', 'rgba(255,255,255,0)')
+            }
+
+          });
+
+          canvas.renderAll()
+        }
+        else {
+          canvas.setBackgroundColor('rgba(255,255,255,0.5)', canvas.renderAll.bind(canvas));
+        }
+
+
+      });
+
+    });
+
+
+</script>
+
+</body>
+</html>

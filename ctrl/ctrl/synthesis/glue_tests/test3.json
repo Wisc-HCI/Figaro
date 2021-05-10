@@ -1,0 +1,4 @@
+[
+	[{"":"self"}, {"sys":"ON"}, {"":"self", "position":["hallway"]}, {"movement":["common_area","coffee"]}, {"h1_speech":"greet", "position":["common_area","coffee"]}, {"speech":"greet"}, {"":"self","position":["common_area","coffee"]}, {"sys":"OFF"}],
+	[{"":"self"}, {"sys":"ON"}, {"":"self", "position":["common_area"]}, {"movement":["hallway", "coffee"]}, {"h1_speech":"greet", "position":["hallway","coffee"]}, {"speech":"greet"}, {"":"self","position":["hallway","coffee"]}, {"sys":"OFF"}]
+]

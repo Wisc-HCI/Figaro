@@ -1,0 +1,4 @@
+int32 scene_number
+string title
+int32 duration_in_seconds
+string summary

@@ -1,0 +1,103 @@
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script type="text/javascript" src="../static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col" style="padding:0">
+        <h1 class="text-center">FIGARO</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container-fluid">
+        <div class="text-center" style="padding: 25px;">
+          <button id="physicallayout" class="btn btn-outline-dark btn-lg" type="button">Draw Physical Layout</button>
+        </div>
+        <div class="text-center" style="padding: 25px;">
+          <button id="sketch" class="btn btn-outline-dark btn-lg" type="button">Create</button>
+        </div>
+        
+        <div class="text-center" style="padding: 25px;">
+          <button id="deploy" class="btn btn-outline-dark btn-lg" type="button">Deploy</button>
+        </div>
+    
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-right" style="padding: 25px;">
+        <button id="save" class="btn btn-outline-dark" type="button">Save Session</button>
+      </div>
+      <div class="col text-left" style="padding: 25px;">
+        <button id="load" class="btn btn-outline-dark" type="button">Load Session</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            window.location.href = msg.response
+          }
+      });
+
+      $("#physicallayout").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'begin_physicallayout', sender: 'tablet'});
+      });
+
+      $("#sketch").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'begin_sketch', sender: 'tablet'});
+      });
+
+      $("#deploy").click(async function(){
+        alert("Robot is ready to run program!")
+        let response = socket.emit('tablet_trigger_nav', {message: 'begin_deploy', sender: 'tablet'});
+      });
+
+      $("#save").click(async function(){
+        console.log("saved session")
+        alert("Session saved (if there was one to save).")
+        let response = socket.emit('save_session', {sender: 'tablet'});
+      });
+
+      $("#load").click(async function(){
+        console.log("loaded session")
+        alert("Session loaded (if there was one to load).")
+        let response = socket.emit('load_session', {sender: 'tablet'});
+      });
+
+    });
+
+  </script>
+</body>
+</html>

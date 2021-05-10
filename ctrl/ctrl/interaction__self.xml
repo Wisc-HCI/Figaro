@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<interaction__self>
+   <state id="0">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="ON"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="1">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="living area"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="2">
+      <behaviors>
+         <behavior cat="movement"/>
+      </behaviors>
+   </state>
+   <state id="3">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="bar"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="5">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="kitchen"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="7">
+      <behaviors>
+         <behavior cat="movement">
+            <value val="charge"/>
+         </behavior>
+      </behaviors>
+   </state>
+   <state id="13">
+      <behaviors>
+         <behavior cat="sys">
+            <value val="OFF"/>
+         </behavior>
+         <behavior cat="movement"/>
+      </behaviors>
+   </state>
+   <init id="0"/>
+   <transition source_id="0" target_id="1">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state/>
+   </transition>
+   <transition source_id="1" target_id="2">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Living Area"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="3">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Living Area"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="3" target_id="2">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Bar"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="5">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Bar"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="5" target_id="2">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Kitchen"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="7">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Kitchen"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="7" target_id="2">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="position">
+            <val val="Charge"/>
+            <val val="movement"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="1">
+      <events>
+         <label label="">
+            <val val="self"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Charge"/>
+         </label>
+      </env_state>
+   </transition>
+   <transition source_id="2" target_id="13">
+      <events>
+         <label label="h1_speech">
+            <val val="shutdown"/>
+         </label>
+      </events>
+      <env_state>
+         <label label="close_to_human">
+            <val val="False"/>
+         </label>
+         <label label="position">
+            <val val="Bar"/>
+         </label>
+      </env_state>
+   </transition>
+</interaction__self>

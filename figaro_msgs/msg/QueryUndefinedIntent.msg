@@ -1,0 +1,7 @@
+string whole_text
+StringArray text_class
+string agent
+StringArray intent_categories
+StringArray user_defined_intent_categories
+StringArray[] user_defined_speech_examples
+PathComponentArray path

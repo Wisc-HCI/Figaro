@@ -1,0 +1,365 @@
+
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.bundle.min.js"></script>
+
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="col" style="padding:0">
+  	    <h1 class="text-center">Custom Speech Categories</h1>
+  	  </div>
+  	</div>
+
+    <div class="row" style="padding-top:20px; padding-left:10%; padding-right:10%; padding-bottom:30px">
+      <div class="col" style="padding-right:15px">
+        <div class="row">
+          <h5 id="noCatsText">No custom categories yet.</h5>
+        </div>
+        <div class="row">
+          <div class="container" style="height:300px;overflow-y:auto">
+            <table id="existingCatsTable" class="table table-hover" hidden>
+              <tbody id="TableItems">
+              </tbody>
+            </table>
+            <button id="tagNew" type="button" class="btn btn-outline-secondary btn-lg">Create new category</button>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="margin-left:15px">
+        <div class="row">
+          <h5 id="existingInstructionText">No category selected.</h5>
+        </div>
+        <div class="row">
+          <div class="container" style="height:300px;overflow-y:auto">
+            <table id="existingPhraseTable" class="table order-list" hidden>
+              <tbody>
+              </tbody>
+            </table>
+            <input type="button" class="btn btn-block btn-outline-secondary" id="addrow_existing" value="+" hidden/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding:10px">
+      <div class="col-8"></div>
+      <div class="col-2">
+        <button id="done" class="btn btn-outline-dark btn-lg" type="button">Done</button>
+      </div>
+      <div class="col-2">
+        <button id="cancel" class="btn btn-outline-dark btn-lg" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal to create new tag -->
+  <div id="newTagModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="newTagName"><h5>New category Name:<h5></label>
+            <input type="text" class="form-control" id="newTagName">
+          </div>
+
+          <h5>Possible phrases for this category:</h5>
+          <div class="container" style="max-height:300px; overflow-y:auto">
+            <table id="newPhraseTable" class=" table order-list">
+              <tbody>
+              </tbody>
+            </table>
+            <input type="button" class="btn btn-block btn-outline-secondary" id="addrow_new" value="+" />
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button id="done_new" type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Done</button>
+          <button id="cancel_new" type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  //var newTagName = ""
+  //var newTagPhrase = []
+  var currentTagList = [] //prevent duplicates from being added
+
+  var origUserDefinedCats = {}
+  var userDefinedCats = {}
+
+  var selectedTag = "--"
+
+    $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            window.location.href = msg.response
+          }
+      });
+
+      //load the appropriate data
+      socket.emit('tablet_request_allintentcats', {sender:'tablet'})
+      socket.on('all_intent_cats', function(msg) {
+        console.log(msg)
+
+        //set tags according to existing list
+        if(msg.cats.length > 0)
+        {
+          msg.cats.forEach(function(element, index){
+            if(!currentTagList.includes(element))
+            {
+              currentTagList.push(element)
+              var newRow = $("<tr class=\"table-row\">");
+              var cols = "";
+
+              cols += '<td>' + element + '</td>';
+
+              newRow.append(cols);
+              $("#existingCatsTable").append(newRow);
+            }
+          })
+          $('#existingCatsTable').attr('hidden', false);
+          $('#noCatsText').attr('hidden', true);
+          $('#existingInstructionText').attr('hidden',false);
+        }
+        else {
+          $('#existingCatsTable').attr('hidden', true);
+          $('#noCatsText').attr('hidden', false);
+          $('#existingInstructionText').attr('hidden',true);
+        }
+
+
+        userDefinedCats = {}
+        origUserDefinedCats = {}
+        //set list of user-defined cats and examples
+        msg.cats.forEach(function(cat, index){
+          userDefinedCats[cat] = []
+          origUserDefinedCats[cat] = []
+          msg.examples[index].forEach(function(example){
+            userDefinedCats[cat].push(example)
+            origUserDefinedCats[cat].push(example)
+          })
+        })
+      });
+
+      //setup socket communication for finish button, since it needs socketio
+      $("#done").click(async function(){
+        updateUserDefinedCats()
+
+        let edited_intent_cat = []
+        let edited_speech_ex = []
+        Object.keys(userDefinedCats).forEach(function(key){
+          let temp = []
+          userDefinedCats[key].forEach(item => temp.push(item))
+          edited_speech_ex.push(temp)
+          edited_intent_cat.push(key)
+        })
+        console.log(edited_intent_cat)
+        console.log(edited_speech_ex)
+
+        let response = socket.emit('tablet_trigger_nav', {message: 'end_editspeechcats', sender: 'tablet', edited_intent_categories: edited_intent_cat, edited_speech_examples:edited_speech_ex});
+        //let response = socket.emit('current_query_complete', {label: tagChoice, speaker: speakerChoice, new_cat: newTag, speech_examples: newTagPhrase, edited_intent_categories: edited_intent_cat, edited_speech_examples:edited_speech_ex})
+
+      });
+
+      $("#cancel").click(async function(){
+        let response = socket.emit('tablet_trigger_nav', {message: 'cancel_editspeechcats', sender: 'tablet'});
+      });
+
+    });
+
+    $('#TableItems').on('click', 'td', function (e) {
+      updateUserDefinedCats()
+
+      //then update new ones if applicable
+      selectedTag = e.target.innerText
+
+      setUserDefinedPhrases()
+
+    });
+
+    $("#tagNew").click(async function(){
+      //clear table
+      $('#newPhraseTable tr').each(function(){
+          $(this).find('input').each(function(){
+            $(this).closest("tr").remove();
+          })
+      })
+      document.getElementById('newTagName').value = ""
+
+      $("#newTagModal").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+      $("#newTagModal").modal("show")
+
+    });
+
+    $("#cancel_new").click(async function(){
+        console.log("cancelled new tag")
+
+    });
+
+    $("#done_new").click(async function(){
+        //save modal information
+        let cat = document.getElementById('newTagName').value
+        $("#existingTagList").append('<option value="' + cat + '" selected="">' + cat + '</option>');
+
+        var newRow = $("<tr class=\"table-row\">");
+        var cols = "";
+        cols += '<td>' + cat + '</td>';
+        newRow.append(cols);
+        $("#existingCatsTable").append(newRow);
+
+        userDefinedCats[cat] = []
+
+        $('#newPhraseTable tr').each(function(){
+            $(this).find('input').each(function(){
+              if($(this)[0].name.includes("name"))
+              {
+                userDefinedCats[cat].push($(this)[0].value)
+              }
+
+            })
+        })
+        $('#existingCatsTable').attr('hidden', false);
+        $('#noCatsText').attr('hidden', true);
+        $('#existingInstructionText').attr('hidden',false);
+        selectedTag = cat
+        setUserDefinedPhrases()
+    });
+
+    var counter_new = 0;
+    $("#addrow_new").on("click", function () {
+       var newRow = $("<tr>");
+       var cols = "";
+
+       cols += '<td><input type="text" class="form-control" name="name' + counter_new + '"/></td>';
+
+       cols += '<td><input type="button" class="ibtnDel btn btn-md btn-outline-danger "  value="Delete"></td>';
+       newRow.append(cols);
+       $("#newPhraseTable").append(newRow);
+       counter_new++;
+    });
+    $("#newPhraseTable").on("click", ".ibtnDel", function (event) {
+       $(this).closest("tr").remove();
+    });
+
+    var counter_existing = 0;
+    $("#addrow_existing").on("click", function () {
+       var newRow = $("<tr>");
+       var cols = "";
+
+       cols += '<td><input type="text" class="form-control" name="name' + counter_existing + '"/></td>';
+
+       cols += '<td><input type="button" class="ibtnDel btn btn-md btn-outline-danger "  value="Delete"></td>';
+       newRow.append(cols);
+       $("#existingPhraseTable").append(newRow);
+       counter_existing++;
+    });
+    $("#existingPhraseTable").on("click", ".ibtnDel", function (event) {
+       $(this).closest("tr").remove();
+    });
+
+    function updateUserDefinedCats(){
+      if(typeof userDefinedCats[selectedTag] !== 'undefined')
+      {
+        userDefinedCats[selectedTag] = []
+        $('#existingPhraseTable tr').each(function(){
+            $(this).find('input').each(function(){
+              if($(this)[0].name.includes("name"))
+              {
+                if($(this)[0].value !== "")
+                {
+                  userDefinedCats[selectedTag].push($(this)[0].value.trim())
+                }
+
+              }
+
+            })
+        })
+      }
+    }
+
+    function setUserDefinedPhrases(){
+      if(typeof userDefinedCats[selectedTag] !== 'undefined')
+      {
+        //clear table
+        $('#existingPhraseTable tr').each(function(){
+            $(this).find('input').each(function(){
+              $(this).closest("tr").remove();
+            })
+        })
+
+        counter_existing = 0;
+        userDefinedCats[selectedTag].forEach(function(ex){
+          var newRow = $("<tr>");
+          var cols = "";
+
+          cols += '<td><input type="text" class="form-control" name="name' + counter_existing + '" value="' + ex + '"/></td>';
+
+          cols += '<td><input type="button" class="ibtnDel btn btn-md btn-outline-danger "  value="Delete"></td>';
+          newRow.append(cols);
+          $("#existingPhraseTable").append(newRow);
+
+          counter_existing++;
+
+        })
+        $('#existingInstructionText')[0].innerHTML = "Possible phrases for " + selectedTag + ":"
+        $('#existingPhraseTable').attr('hidden', false);
+        $('#addrow_existing').attr('hidden', false);
+
+      }
+      else {
+        if(selectedTag === "--")
+        {
+          $('#existingInstructionText')[0].innerHTML = "No tag selected."
+        }
+        else {
+          $('#existingInstructionText')[0].innerHTML = "Cannot edit phrases of default tags."
+        }
+        $('#existingPhraseTable').attr('hidden', true);
+        $('#addrow_existing').attr('hidden', true);
+      }
+    }
+
+  </script>
+</body>
+</html>

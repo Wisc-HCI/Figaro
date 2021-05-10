@@ -1,0 +1,3 @@
+string figure
+SpeechArray speech
+IntentArray actions

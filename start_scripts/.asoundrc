@@ -1,0 +1,20 @@
+pcm.!default {
+	type plug
+	#slave.pcm "asymed"
+	slave.pcm "dsnooped"
+}
+
+#pcm.asymed {
+#	type asym
+	#ipc_key 234509
+#	capture.pcm "dsnooped"
+#}
+
+pcm.dsnooped {
+	type dsnoop
+	ipc_key 5892
+	ipc_key_add_uid yes
+	slave {
+		pcm "hw:1,0"
+	}
+}

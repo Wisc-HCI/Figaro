@@ -1,0 +1,366 @@
+
+<html>
+<head>
+
+  <!--favicon location-->
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <!--javascript library references-->
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/fabric.min.js"></script>
+  <script src="/static/bootstrap.bundle.min.js"></script>
+
+
+  <!--socket io library-->
+  <script src="/static/socket.io.js"></script>
+
+  <!--javascript custom files-->
+  <script src="/static/serverFunctions.js"></script>
+
+  <!--stylesheet references-->
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+  <!--custom css styling-->
+  <link rel="stylesheet" href="/static/styling.css">
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+  	  <div class="col" style="padding:0">
+  	    <h1 class="text-center">QUERY</h1>
+  	  </div>
+  	</div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row" style="padding-left:10px">
+          <div class="col">
+              <h5>When the robot (green) and the human (blue) follow the paths on the right, and the robot does the following:</h5>
+          </div>
+        </div>
+        <div class="row" style="margin-left:25px; margin-bottom:50px">
+          <div id="behaviors"></div>
+        </div>
+        <div class="row" style="padding-left:10px">
+          <div class="col">
+              <h5>And this happens:</h5>
+          </div>
+        </div>
+        <div class="row" style="margin-left:25px">
+          <div id="events"></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <canvas id="canvas" width="480" height="360" style = 'border: solid black 0.5px;'></canvas>
+      </div>
+    </div>
+
+    <div class="row" style="background-color:#EBEBEB; padding-left:10px; padding-top:20px">
+        <div class="col">
+            <h5>What should the robot do?</h5>
+        </div>
+    </div>
+    <div class="row" style="background-color:#EBEBEB; padding:10px">
+      <div id="options" class="btn-group"></div>
+    </div>
+
+    <div class="row" style="padding:10px">
+      <div class="col-10">
+      </div>
+      <div class="col">
+          <button id="done" class="btn btn-outline-secondary btn-lg" type="button">Done</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal for confirmation -->
+  <div id="confirmationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" id="cancel_confirm">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="finish_confirm" type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Okay</button>
+          <button id="cancel_confirm" type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  var choice = "unselected"
+  var button_list = []
+  var canvas = new fabric.Canvas('canvas');
+  var xScale = 480
+  var yScale = 360
+  var majorRadius = 20
+  var majorAlpha = 1
+  var minorRadius = 10
+  var minorAlpha = 0.6
+  var robotColor = '60,125,60,'
+  var humanColor = '0, 120, 255,'
+  var pathItems = []
+
+    $(document).ready(function(){
+      var ip = {{ data|tojson }}
+      var socket = io.connect('http://' + ip + ':' + get_controller_node_port());
+      socket.on('system_nav', function(msg) {
+          if(msg.response === 'error')
+          {
+            console.log("operation failed:")
+            console.log(status)
+          }
+          else
+          {
+            window.location.href = msg.response
+          }
+      });
+
+      //load the appropriate data
+      socket.emit('get_query', {sender:'tablet', request:'conflict'})
+      socket.on('conflict_query_stream', function(msg) {
+
+        msg.behavior_option_list.forEach(function(opt){
+          let element = document.createElement("button");
+          element.setAttribute("class", "btn btn-outline-secondary btn-lg");
+          element.setAttribute("id", opt);
+          element.innerHTML = opt
+
+          document.getElementById("options").appendChild(element);
+
+          button_list.push(opt)
+        })
+
+        msg.event_env_list.forEach(function(opt){
+          console.log(opt)
+          let element = document.createElement("p");
+          element.setAttribute("id", opt);
+          element.setAttribute("style","font-size:17px; padding:0; margin:0;")
+          element.innerHTML = opt
+
+          document.getElementById("events").appendChild(element);
+        })
+
+        msg.robot_action_list.forEach(function(opt){
+          let element = document.createElement("p");
+          element.setAttribute("id", opt);
+          element.setAttribute("style","font-size:17px; padding:0; margin:0;")
+          element.innerHTML = opt
+
+          document.getElementById("behaviors").appendChild(element);
+        })
+
+        //process scene points
+        if (msg.layout != 'blank'){
+          canvas.clear()
+          canvas.loadFromDatalessJSON(msg.layout)
+          canvas.setDimensions({ width: xScale, height: yScale });
+          canvas.setZoom(0.66)
+
+          canvas.getObjects().forEach((obj) => {
+            obj.selectable = false;
+
+            if(typeof obj.region !== 'undefined')
+            {
+              obj.set('stroke', 'rgba(255,255,255,0)')
+              canvas.sendToBack(obj)
+            }
+            else {
+              canvas.bringToFront(obj)
+              obj.visible = true
+            }
+          });
+        }
+        else {
+          canvas.setBackgroundColor('rgba(255,255,255,0.5)', canvas.renderAll.bind(canvas));
+        }
+
+        let front = []
+        let max = msg.human_path.length
+        for(let n=0; n<max; n++)
+        {
+          console.log(msg.human_path[n])
+          let x = Math.round(msg.human_path[n][0] * xScale /0.66)
+          let y = Math.round(msg.human_path[n][1] * yScale /0.66)
+          let r = minorRadius
+          let alpha = minorAlpha
+          if(Math.round(msg.human_path[n][2] !== ""))
+          {
+            r = majorRadius
+            alpha = majorAlpha
+          }
+          let dot = new fabric.Circle({
+          	radius: r,
+          	fill: 'rgba(' + humanColor + alpha + ')',
+            left: x ,
+            top:  y ,
+            selectable: false,
+            originX: 'center',
+            originY: 'center',
+          });
+          canvas.add(dot);
+          canvas.bringToFront(dot)
+          pathItems.push(dot)
+          if(Math.round(msg.human_path[n][2] !== ""))
+          {
+            dot.setGradient('fill', {
+              type: 'radial',
+              r1: majorRadius * 0.7,
+              r2: majorRadius,
+              x1: majorRadius,
+              y1: majorRadius,
+              x2: majorRadius,
+              y2: majorRadius,
+              colorStops: {
+                  0: 'rgba(' + humanColor + alpha + ')',
+                  1: 'rgba(0, 0, 0, 0.8)'
+              }
+            });
+            dot.on('mousedown', function(e){
+              alert(msg.human_path[n][2])
+            })
+            front.push(dot)
+          }
+
+          if(n > 0){
+            //draw the line to connect them
+            let x2 = Math.round(msg.human_path[n-1][0] * xScale /0.66)
+            let y2 = Math.round(msg.human_path[n-1][1] * yScale /0.66)
+            let l = new fabric.Line([x, y, x2, y2], {
+              fill: 'rgba(' + humanColor + minorAlpha + ')',
+              stroke: 'rgba(' + humanColor + minorAlpha + ')',
+              strokeWidth: 1,
+              strokeDashArray: [10, 5],
+              selectable: false,
+              evented: false,
+            });
+            canvas.add(l)
+            pathItems.push(l)
+          }
+        }
+
+        max = msg.robot_path.length
+        for(let n=0; n<max; n++)
+        {
+          let x = Math.round(msg.robot_path[n][0] * xScale /0.66)
+          let y = Math.round(msg.robot_path[n][1] * yScale /0.66)
+          let r = minorRadius
+          let alpha = minorAlpha
+          if(Math.round(msg.robot_path[n][2] !== ""))
+          {
+            console.log(msg.robot_path[n][2])
+            r = majorRadius
+            alpha = majorAlpha
+          }
+          let dot = new fabric.Circle({
+          	radius: r,
+          	fill: 'rgba(' + robotColor + alpha + ')',
+            left: x ,
+            top:  y ,
+            selectable: false,
+            originX: 'center',
+            originY: 'center',
+          });
+          canvas.add(dot);
+          canvas.bringToFront(dot)
+          pathItems.push(dot)
+          if(Math.round(msg.robot_path[n][2] !== ""))
+          {
+            dot.setGradient('fill', {
+              type: 'radial',
+              r1: majorRadius * 0.7,
+              r2: majorRadius,
+              x1: majorRadius,
+              y1: majorRadius,
+              x2: majorRadius,
+              y2: majorRadius,
+              colorStops: {
+                  0: 'rgba(' + robotColor + alpha + ')',
+                  1: 'rgba(50,50,50, 1)'
+              }
+            });
+            dot.on('mousedown', function(e){
+              alert(msg.robot_path[n][2])
+            })
+            front.push(dot)
+          }
+
+          if(n > 0){
+            //draw the line to connect them
+            let x2 = Math.round(msg.robot_path[n-1][0] * xScale /0.66)
+            let y2 = Math.round(msg.robot_path[n-1][1] * yScale /0.66)
+            let l = new fabric.Line([x, y, x2, y2], {
+              fill: 'rgba(' + robotColor + minorAlpha + ')',
+              stroke: 'rgba(' + robotColor + minorAlpha + ')',
+              strokeWidth: 1,
+              strokeDashArray: [10, 5],
+              selectable: false,
+              evented: false,
+            })
+            canvas.add(l);
+            pathItems.push(l)
+          }
+        }
+
+        front.forEach(function(spot) {
+          spot.bringToFront()
+        } )
+
+        canvas.requestRenderAll()
+      });
+
+      //setup socket communication for finish button, since it needs socketio
+      $("#finish_confirm").click(async function(){
+
+        console.log("done")
+        console.log(choice)
+        let response = socket.emit('current_query_complete', {type:'conflict', selection: choice})
+
+      });
+
+
+    });
+
+    $('#options').on('click','button', function(event){
+      console.log(event.target.id)
+      choice = event.target.id
+
+      button_list.forEach((item) => {
+        if(choice === item){
+          document.getElementById(choice).className = "btn btn-secondary btn-lg"
+        }
+        else {
+          document.getElementById(item).className = "btn btn-outline-secondary btn-lg"
+        }
+      })
+    })
+
+    $("#done").click(async function(){
+      if(choice === "unselected")
+      {
+        alert("Please fill in all information before exiting.")
+      }
+      else {
+        $("#confirmationModal").modal("show")
+      }
+
+    })
+
+    $("#cancel_confirm").click(async function(){
+    $("#confirmationModal").modal("hide")
+    });
+
+  </script>
+</body>
+</html>

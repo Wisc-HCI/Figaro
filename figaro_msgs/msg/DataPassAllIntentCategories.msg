@@ -1,0 +1,2 @@
+StringArray edited_intent_categories
+StringArray[] edited_speech_examples
