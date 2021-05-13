@@ -6,6 +6,8 @@ You can run the Figaro code without necessarily needing a lot of the hardware. A
 
 - An Ubuntu Linux computer. Figaro has been tested on Ubuntu 18.04.
 - A microphone to capture speech
+- ros1_bridge (place in the top-level Figaro directory with the other nodes): https://github.com/ros2/ros1_bridge
+- cv_bridge (place in the top-level Figaro directory with the other nodes): https://github.com/ros-perception/vision_opencv
 
 ### Recommended Setup
 
@@ -15,7 +17,7 @@ Without the tabletop hardware, Figaro recommends the following additional compon
 
 ### For Full Replication
 
-To fully replicate Figaro with the tabletop, we recommend the following additional components:
+To fully replicate Figaro with the tabletop, we recommend the following additional hardware components:
 
 - A Kinect V1 camera
 - Two figurines constructed using the guidelines below (see "Figurine Construction")
