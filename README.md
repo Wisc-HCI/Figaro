@@ -42,7 +42,17 @@ To replicate the full-setup, you will need:
 (to be added soon)
 
 ## Figurine Construction
-(to be added soon)
+Each figurine is affixed to a joystick controller. Drill a hole into the center of the bottom of the figurine, such that it fits snuggly onto the joystick. The joystick base consists of the joystick, a small microcontroller with BLE capabilities, and a 3D-printed base to encapsulate the electronics. The microcontroller was programmed with [CircuitPython](https://circuitpython.org) using the [Adafruit_CircuitPython_BLE library](https://github.com/adafruit/Adafruit_CircuitPython_BLE). Code for the robot figurine can be found [here](https://github.com/Wisc-HCI/Figaro/blob/master/figure_gestures/microcontroller/microcontroller_code1.py).
+
+(calibration instructions/code to be added)
+
+The code for the figurines was designed to work with the following hardware:
+
+- Adafruit Feather NRF52840 microcontroller: https://www.adafruit.com/product/40626
+- Lithium Ion Polymer Ion Battery - 3.7V 100MAH: https://www.adafruit.com/product/1570
+- Adafruit LiIon/LiPoly Backpack Add-On for Pro Trinket/ItsyBitsy: https://www.adafruit.com/product/2124
+- Joystick Breakout Module: https://www.amazon.com/DEVMO-Joystick-Breakout-Controller-Arduino/dp/B07RB493PT/ref=sr_1_9?dchild=1&keywords=arduino+joystick&qid=1596144679&refinements=p_85%3A2470955011&rnid=2470954011&rps=1&sr=8-9
+
 
 ## Build Instructions (make sure to replace the "/path/to" with your own paths)
 
