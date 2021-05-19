@@ -1,6 +1,6 @@
 """
-Used with ble_uart_echo_test.py. Transmits "echo" to the UARTService and receives it back.
-The file is already loaded onto the CIRCUITPY board in code,py
+Reads the value transmitted by the microcontroller, and decodes them.
+Runs without ROS, for debug purposes.
 """
 
 import time
@@ -13,7 +13,7 @@ from adafruit_ble.services.nordic import UARTService
 ble = BLERadio()
 
 
-# read the value and send to the ROS node
+# read the value and print
 while True:
     while ble.connected and any(
         UARTService in connection for connection in ble.connections
