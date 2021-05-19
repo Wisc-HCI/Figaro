@@ -44,7 +44,7 @@ To replicate the full-setup, you will need:
 ## Figurine Construction
 Each figurine is affixed to a joystick controller. Drill a hole into the center of the bottom of the figurine, such that it fits snuggly onto the joystick. The joystick base consists of the joystick, a small microcontroller with BLE capabilities, and a 3D-printed base to encapsulate the electronics. The microcontroller was programmed with [CircuitPython](https://circuitpython.org) using the [Adafruit_CircuitPython_BLE library](https://github.com/adafruit/Adafruit_CircuitPython_BLE). Code for the robot figurine can be found [here](https://github.com/Wisc-HCI/Figaro/blob/master/figure_gestures/microcontroller/microcontroller_code1.py).
 
-(calibration instructions/code to be added)
+When you start the figure_gesture node, the terminal will prompt you for some calibration steps.
 
 The code for the figurines was designed to work with the following hardware:
 
