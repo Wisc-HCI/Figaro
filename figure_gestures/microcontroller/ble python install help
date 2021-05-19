@@ -1,0 +1,11 @@
+Installation instructions to get the microcontroller code running on your LINUX machine:
+
+1. Install CircuitPython BLE Library: https://github.com/adafruit/Adafruit_CircuitPython_BLE/
+
+However, you will also need to:
+- Use Python 3.7 (only version I got it to work with)
+- Install CircuitPython libraries: https://github.com/adafruit/Adafruit_CircuitPython_Bundle
+- Install _bleio for Blinka: https://github.com/adafruit/Adafruit_Blinka_bleio
+  _bleio dependencies:
+	- Bluez (version 5.48): https://learn.adafruit.com/install-bluez-on-the-raspberry-pi/installation
+	- Bleak: https://github.com/hbldh/bleak

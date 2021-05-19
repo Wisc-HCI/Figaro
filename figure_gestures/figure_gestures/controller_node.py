@@ -38,8 +38,14 @@ class Gesture_Publisher_Node:
         self.topic_path = self.client.topic_path('verification-of-hri', 'robot_topic')
 
         # Create the topic
-        self.topic = self.client.create_topic(self.topic_path)
 
+        try:
+          self.topic = self.client.create_topic(self.topic_path)
+        except:
+          print("code not properly terminated before :(")
+          print("deleting publisher then trying again...")
+          self.client.delete_topic(self.topic_path)
+          self.topic = self.client.create_topic(self.topic_path)
 
     def get_callback(self, api_future, data, ref):
         """Wrap message data in the context of the callback function."""
@@ -334,9 +340,24 @@ class Gesture_Publisher_Node:
                             bs = one_byte.decode('UTF-8')
                             print(bs)
                             vals = bs.split('#')
-                            xVal = int(vals[0]) - 100000
-                            yVal = int(vals[1]) - 100000
-                            bVal = int(vals[2]) - 100000
+
+                            xVal = vals[0]
+                            yVal = vals[1]
+                            bVal = vals[2]
+
+                            #unscramble a scrambled signal
+                            if len(xVal) > 6:
+                                print(bVal, xVal)
+                                print("unscrambling...")
+                                bVal = bVal + xVal[0:3]
+                                xVal = xVal[4:9]
+                                print(bVal, xVal)
+
+                            xVal = int(xVal) - 100000
+                            yVal = int(yVal) - 100000
+                            bVal = int(bVal) - 100000
+
+                            print(xVal, yVal, bVal)
 
                             mag = self.get_magnitude(xVal, yVal)
 
@@ -374,8 +395,25 @@ class Gesture_Publisher_Node:
                             bs = one_byte.decode('UTF-8')
                             print(bs)
                             vals = bs.split('#')
-                            xVal = int(vals[0]) - 100000
-                            yVal = int(vals[1]) - 100000
+
+                            xVal = vals[0]
+                            yVal = vals[1]
+                            bVal = vals[2]
+
+                            #unscramble a scrambled signal
+                            if len(xVal) > 6:
+                                print(bVal, xVal)
+                                print("unscrambling...")
+                                bVal = bVal + xVal[0:3]
+                                xVal = xVal[4:9]
+                                print("unscrambled")
+                                print(bVal, xVal)
+
+                            xVal = int(xVal) - 100000
+                            yVal = int(yVal) - 100000
+                            bVal = int(bVal) - 100000
+
+                            print(xVal, yVal, bVal)
 
                             direct = self.get_direction(xVal, yVal)
 
@@ -404,9 +442,24 @@ class Gesture_Publisher_Node:
                             bs = one_byte.decode('UTF-8')
                             print(bs)
                             vals = bs.split('#')
-                            xVal = int(vals[0]) - 100000
-                            yVal = int(vals[1]) - 100000
-                            bVal = int(vals[2]) - 100000
+
+                            xVal = vals[0]
+                            yVal = vals[1]
+                            bVal = vals[2]
+
+                            #unscramble a scrambled signal
+                            if len(xVal) > 6:
+                                print(bVal, xVal)
+                                print("unscrambling...")
+                                bVal = bVal + xVal[0:3]
+                                xVal = xVal[4:9]
+                                print(bVal, xVal)
+
+                            xVal = int(xVal) - 100000
+                            yVal = int(yVal) - 100000
+                            bVal = int(bVal) - 100000
+
+                            print(xVal, yVal, bVal)
 
                             #interp = classify(xVal, yVal, bVal)
                             mag = self.get_magnitude(xVal, yVal)
